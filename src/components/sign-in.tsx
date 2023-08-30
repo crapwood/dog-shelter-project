@@ -1,28 +1,48 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
+import { useRouter } from 'next/navigation'
+
+const users = [{ username: 'admin', password: '1234', isAdmin: true }, {
+    username: 'user',
+    password: '1234',
+    isAdmin: false
+}]
 
 export function SignIn() {
+    const [dogUrl, setDogUrl] = useState<string>('')
+    const { push } = useRouter();
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-        });
+        const isUser = users.some((user) => user.username === data.get("username") && user.password === data.get("password"));
+        if (isUser) {
+            push('/main-page')
+        }
     };
+
+    useEffect(() => {
+
+            const fetchData = async () => {
+                const resp = await fetch("https://dog.ceo/api/breeds/image/random");
+                const data = await resp.json();
+                setDogUrl(data.message)
+            }
+
+            fetchData()
+        }
+        , [])
 
     return (
         <Container component="main" maxWidth="lg">
-            <Box
+            {dogUrl && <Box
                 sx={{
                     marginTop: 8,
                 }}
@@ -35,7 +55,7 @@ export function SignIn() {
                         sm={4}
                         md={7}
                         sx={{
-                            backgroundImage: "url(https://source.unsplash.com/random)",
+                            backgroundImage: `url(${dogUrl})`,
                             backgroundRepeat: "no-repeat",
                             backgroundColor: (t) =>
                                 t.palette.mode === "light"
@@ -76,10 +96,10 @@ export function SignIn() {
                                     margin="normal"
                                     required
                                     fullWidth
-                                    id="email"
-                                    label="Email Address"
-                                    name="email"
-                                    autoComplete="email"
+                                    id="username"
+                                    label="Username"
+                                    name="username"
+                                    autoComplete="username"
                                     autoFocus
                                 />
                                 <TextField
@@ -92,35 +112,35 @@ export function SignIn() {
                                     id="password"
                                     autoComplete="current-password"
                                 />
-                                <FormControlLabel
-                                    control={<Checkbox value="remember" color="primary"/>}
-                                    label="Remember me"
-                                />
-                                <Button
+                                {/*<FormControlLabel*/}
+                                {/*    control={<Checkbox value="remember" color="primary"/>}*/}
+                                {/*    label="Remember me"*/}
+                                {/*/>*/}
+                                <button
                                     type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{ mt: 3, mb: 2 }}
+                                    // fullWidth
+                                    // variant="contained"
+                                    // sx={{ mt: 3, mb: 2 }}
                                 >
                                     Sign In
-                                </Button>
-                                <Grid container>
-                                    <Grid item xs>
-                                        <Link href="#" variant="body2">
-                                            Forgot password?
-                                        </Link>
-                                    </Grid>
-                                    <Grid item>
-                                        <Link href="#" variant="body2">
-                                            {"Don't have an account? Sign Up"}
-                                        </Link>
-                                    </Grid>
-                                </Grid>
+                                </button>
+                                {/*<Grid container>*/}
+                                {/*    <Grid item xs>*/}
+                                {/*        <Link href="#" variant="body2">*/}
+                                {/*            Forgot password?*/}
+                                {/*        </Link>*/}
+                                {/*    </Grid>*/}
+                                {/*    <Grid item>*/}
+                                {/*        <Link href="#" variant="body2">*/}
+                                {/*            {"Don't have an account? Sign Up"}*/}
+                                {/*        </Link>*/}
+                                {/*    </Grid>*/}
+                                {/*</Grid>*/}
                             </Box>
                         </Box>
                     </Grid>
                 </Grid>
-            </Box>
+            </Box>}
         </Container>
     );
 }
