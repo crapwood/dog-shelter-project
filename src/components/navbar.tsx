@@ -55,9 +55,9 @@ function Navbar(props: Props) {
             </Typography>
             <Divider/>
             <List>
-                {Object.keys(linkNavItems).map((item: NavItems) => (
+                {Object.keys(linkNavItems).map((item) => (
                     <ListItem key={item} disablePadding>
-                        <Link href={`${linkNavItems[item]}`} >
+                        <Link href={`${linkNavItems[item as NavItems]}`} >
                             <ListItemButton sx={{ textAlign: 'center' }} onClick={() => console.log(item)} >
                                 <ListItemText primary={item} />
                             </ListItemButton>
@@ -92,8 +92,8 @@ function Navbar(props: Props) {
                         District of Haifa Animal Shelter
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        {Object.keys(linkNavItems).map((item: NavItems) => (
-                            <Link href={`${linkNavItems[item]}`} key={item}>
+                        {Object.keys(linkNavItems).map((item) => (
+                            <Link href={`${linkNavItems[item as NavItems]}`} key={item}>
                                 <Button key={item} sx={{ color: '#fff' }}>
                                     {item}
                                 </Button>
