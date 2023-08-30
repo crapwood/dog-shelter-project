@@ -25,16 +25,19 @@ interface Props {
 }
 
 const drawerWidth = 240;
-// enum NavItems = {
-//     'Home' =
-// }
-const navItems = ['Home', 'About', 'Forms', 'Reports'];
+enum NavItems  {
+    HOME ='Home',
+    ABOUT = 'About',
+    FORMS = 'Forms',
+    REPORTS = 'Reports'
+}
+// const navItems = ['Home', 'About', 'Forms', 'Reports'];
 
-const linkNavItems = {
-    'Home': '/main-page',
-    'About': '/about',
-    'Forms': '/forms',
-    'Reports': '/reports'
+const linkNavItems: Record<NavItems, string> = {
+    [NavItems.HOME]: '/main-page',
+    [NavItems.ABOUT]: '/about',
+    [NavItems.FORMS]: '/forms',
+    [NavItems.REPORTS]: '/reports'
 }
 
 function Navbar(props: Props) {
@@ -52,7 +55,7 @@ function Navbar(props: Props) {
             </Typography>
             <Divider/>
             <List>
-                {navItems.map((item) => (
+                {Object.keys(linkNavItems).map((item: NavItems) => (
                     <ListItem key={item} disablePadding>
                         <Link href={`${linkNavItems[item]}`} >
                             <ListItemButton sx={{ textAlign: 'center' }} onClick={() => console.log(item)} >
@@ -89,7 +92,7 @@ function Navbar(props: Props) {
                         District of Haifa Animal Shelter
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                        {navItems.map((item) => (
+                        {Object.keys(linkNavItems).map((item: NavItems) => (
                             <Link href={`${linkNavItems[item]}`} key={item}>
                                 <Button key={item} sx={{ color: '#fff' }}>
                                     {item}
