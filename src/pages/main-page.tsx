@@ -3,7 +3,6 @@ import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { Box, Container } from "@mui/material";
 import '../styles/main-age.scss'
 import Grid from "@mui/material/Grid";
-import Layout from "@/components/layout";
 import Navbar from "@/components/navbar";
 
 const columns: GridColDef[] = [
