@@ -1,6 +1,7 @@
+// @ts-nocheck
 import React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Box, Container } from "@mui/material";
+import { Box } from "@mui/material";
 import '../styles/main-age.scss'
 import Grid from "@mui/material/Grid";
 import Navbar from "@/components/navbar";

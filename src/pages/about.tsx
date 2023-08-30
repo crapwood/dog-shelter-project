@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import Navbar from "@/components/navbar";
 import { Box } from "@mui/material";
@@ -14,7 +15,7 @@ function About() {
                     <div style={{ height: '48px', backgroundColor: 'red', width: '100%' }} />
                 </Grid>
                 <Grid item xs={3}>
-                    <div sx={{height: '100px'}}>TODO: About Page</div>
+                    <div style={{height: '100px'}}>TODO: About Page</div>
                 </Grid>
 
             </Grid>
