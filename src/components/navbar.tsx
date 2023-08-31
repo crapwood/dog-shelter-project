@@ -27,10 +27,10 @@ interface Props {
 
 const drawerWidth = 240;
 enum NavItems  {
-    HOME ='Home',
-    ABOUT = 'About',
-    FORMS = 'Forms',
-    REPORTS = 'Reports'
+    HOME ='בית',
+    ABOUT = 'אודות',
+    FORMS = 'טפסים',
+    REPORTS = 'דו"חות'
 }
 // const navItems = ['Home', 'About', 'Forms', 'Reports'];
 
@@ -90,7 +90,7 @@ function Navbar(props: Props) {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                     >
-                        District of Haifa Animal Shelter
+                        אגודת צער בעלי חיים מחוז חיפה
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {Object.keys(linkNavItems).map((item) => (

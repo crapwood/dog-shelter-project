@@ -1,7 +1,7 @@
 // @ts-nocheck
 "use client";
 import React, { useEffect, useState } from "react";
-import { Button } from "@mui/material";
+import { Button, Checkbox, FormControlLabel } from "@mui/material";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Paper from "@mui/material/Paper";
@@ -10,6 +10,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { Container } from "@mui/material";
 import { useRouter } from 'next/navigation'
+import '../styles/sign-in.scss'
 
 const users = [{ username: 'admin', password: '1234', isAdmin: true }, {
     username: 'user',
@@ -42,10 +43,10 @@ export function SignIn() {
         , [])
 
     return (
-        <Container component="main" maxWidth="lg">
+        <Box className="sign-in-container">
             {dogUrl && <Box
                 sx={{
-                    marginTop: 8,
+                    width: '1152px'
                 }}
             >
                 <Grid container>
@@ -85,7 +86,7 @@ export function SignIn() {
                             }}
                         >
                             <Typography component="h1" variant="h5">
-                                Sign in
+                                כניסה למערכת
                             </Typography>
                             <Box
                                 component="form"
@@ -98,7 +99,7 @@ export function SignIn() {
                                     required
                                     fullWidth
                                     id="username"
-                                    label="Username"
+                                    label="שם משתמש"
                                     name="username"
                                     autoComplete="username"
                                     autoFocus
@@ -108,40 +109,28 @@ export function SignIn() {
                                     required
                                     fullWidth
                                     name="password"
-                                    label="Password"
+                                    label="סיסמה"
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
                                 />
-                                {/*<FormControlLabel*/}
-                                {/*    control={<Checkbox value="remember" color="primary"/>}*/}
-                                {/*    label="Remember me"*/}
-                                {/*/>*/}
+                                <FormControlLabel
+                                    control={<Checkbox value="remember" color="primary"/>}
+                                    label="זכור אותי"
+                                />
                                 <Button
                                     type="submit"
                                     fullWidth
                                     variant="contained"
                                     sx={{ mt: 3, mb: 2 }}
                                 >
-                                    Sign In
+                                    התחברות
                                 </Button>
-                                {/*<Grid container>*/}
-                                {/*    <Grid item xs>*/}
-                                {/*        <Link href="#" variant="body2">*/}
-                                {/*            Forgot password?*/}
-                                {/*        </Link>*/}
-                                {/*    </Grid>*/}
-                                {/*    <Grid item>*/}
-                                {/*        <Link href="#" variant="body2">*/}
-                                {/*            {"Don't have an account? Sign Up"}*/}
-                                {/*        </Link>*/}
-                                {/*    </Grid>*/}
-                                {/*</Grid>*/}
                             </Box>
                         </Box>
                     </Grid>
                 </Grid>
             </Box>}
-        </Container>
+        </Box>
     );
 }

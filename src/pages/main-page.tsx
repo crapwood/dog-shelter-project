@@ -1,18 +1,19 @@
 // @ts-nocheck
 import React from 'react';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
-import { Box } from "@mui/material";
-import '../styles/main-age.scss'
+import { Box, Divider } from "@mui/material";
+import '../styles/main-page.scss'
 import Grid from "@mui/material/Grid";
 import Navbar from "@/components/navbar";
+import Filters from "@/components/filters";
 
 const columns: GridColDef[] = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Name', width: 200 },
-    { field: 'breed', headerName: 'Breed', width: 200 },
+    { field: 'id', headerName: 'מס.', width: 70 },
+    { field: 'name', headerName: 'שם', width: 200 },
+    { field: 'breed', headerName: 'גזע', width: 200 },
     {
         field: 'sex',
-        headerName: 'Sex',
+        headerName: 'מין',
         // type: 'number',
         width: 100,
     },
@@ -25,9 +26,9 @@ const columns: GridColDef[] = [
     //     // valueGetter: (params: GridValueGetterParams) =>
     //     //     `${params.row.name || ''} ${params.row.breed || ''}`,
     // },
-    { field: 'chip', headerName: 'Chip#', width: 250 },
-    { field: 'bitan', headerName: 'Bitan', width: 180 },
-    { field: 'status', headerName: 'Status', width: 150 },
+    { field: 'chip', headerName: 'מס. שבב', width: 250 },
+    { field: 'bitan', headerName: 'ביתן', width: 180 },
+    { field: 'status', headerName: 'סטטוס', width: 150 },
 ];
 
 const rows = [
@@ -144,7 +145,8 @@ export default function MainPage() {
                     <Navbar/>
                 </Grid>
                 <Grid item xs={12}>
-                    <div style={{ height: '200px', backgroundColor: 'red', width: '100%' }}>Filters (SQL Queries)</div>
+                    <Filters />
+                    <Divider />
                 </Grid>
                 <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                     <DataGrid
@@ -168,6 +170,7 @@ export default function MainPage() {
                         // autoPageSize={true}
                         // autoHeight={true}
                         hideFooterPagination={true}
+                         sx={{padding: '24px'}}
                     />
                 </Grid>
                 {/*<Grid item xs={4}>*/}
