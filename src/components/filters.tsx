@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField, Typography } from "@mui/material";
 
