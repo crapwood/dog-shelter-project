@@ -91,7 +91,7 @@ function Filters() {
                     ))}
                 </Select>
             </FormControl>
-            <Typography variant="h6">פילטור</Typography>
+            <Typography variant="h6">סינון</Typography>
         </Box>
     );
 }
