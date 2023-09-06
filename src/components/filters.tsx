@@ -1,6 +1,6 @@
 // @ts-nocheck
 import React from 'react';
-import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField, Typography } from "@mui/material";
+import { Box, FormControl, InputLabel, MenuItem, OutlinedInput, Select, TextField, Typography, Button } from "@mui/material";
 
 const breed = [
     'אירדייל טרייר',
@@ -18,6 +18,9 @@ const gender = [
     'זכר',
     'נקבה'
 ];
+const bitan = ['מרפאה','פנסיון']
+
+const status = ['פעיל', 'לא פעיל']
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -91,7 +94,52 @@ function Filters() {
                     ))}
                 </Select>
             </FormControl>
-            <Typography variant="h6">סינון</Typography>
+            <TextField id="standard-basic" label="שבב" variant="outlined" />
+            <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">ביתן</InputLabel>
+                <Select
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={personName}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Name" />}
+                    MenuProps={MenuProps}
+                >
+                    {bitan.map((name) => (
+                        <MenuItem
+                            key={name}
+                            value={name}
+                            // style={getStyles(name, personName, theme)}
+                        >
+                            {name}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+            <FormControl sx={{ m: 1, width: 300 }}>
+                <InputLabel id="demo-multiple-name-label">סטטוס</InputLabel>
+                <Select
+                    labelId="demo-multiple-name-label"
+                    id="demo-multiple-name"
+                    multiple
+                    value={personName}
+                    onChange={handleChange}
+                    input={<OutlinedInput label="Name" />}
+                    MenuProps={MenuProps}
+                >
+                    {status.map((name) => (
+                        <MenuItem
+                            key={name}
+                            value={name}
+                            // style={getStyles(name, personName, theme)}
+                        >
+                            {name}
+                        </MenuItem>
+                    ))}
+                </Select>
+            </FormControl>
+            <Button variant="contained" sx={{height: '56px', width: '200px'}}><Typography variant="h6">סינון</Typography></Button>
         </Box>
     );
 }

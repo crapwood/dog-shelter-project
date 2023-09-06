@@ -16,6 +16,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
+import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 
 interface Props {
     /**
@@ -28,7 +29,6 @@ interface Props {
 const drawerWidth = 240;
 enum NavItems  {
     HOME ='בית',
-    ABOUT = 'אודות',
     FORMS = 'טפסים',
     REPORTS = 'דו"חות'
 }
@@ -36,7 +36,6 @@ enum NavItems  {
 
 const linkNavItems: Record<NavItems, string> = {
     [NavItems.HOME]: '/main-page',
-    [NavItems.ABOUT]: '/about',
     [NavItems.FORMS]: '/forms',
     [NavItems.REPORTS]: '/reports'
 }
@@ -96,7 +95,7 @@ function Navbar(props: Props) {
                         {Object.keys(linkNavItems).map((item) => (
                             <Link href={`${linkNavItems[item as NavItems]}`} key={item}>
                                 <Button key={item} sx={{ color: '#fff' }}>
-                                    {item}
+                                    {item === 'בית' ? <HomeRoundedIcon /> : item}
                                 </Button>
                             </Link>
                         ))}
