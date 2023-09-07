@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from "zustand/middleware";
 import { tempData } from "@/constants/constants";
 
 
@@ -8,12 +9,20 @@ interface GlobalStore {
     getData: () => any;
 }
 
-export const useGlobalStore = create<GlobalStore>((set, get) => ({
-    selectedTableData: tempData,
-    // setTableData: (newData) => set((state) => ({selectedTableData: [state.selectedTableData.unshift(newData)]}))
-    setTableData: (newData) => set((state) => state.selectedTableData.unshift(newData)),
-    getData: () => { return get().selectedTableData}
-}));
+export const useGlobalStore = create<GlobalStore>(persist(
+    (set, get) => ({
+        selectedTableData: tempData,
+        // setTableData: (newData) => set((state) => ({selectedTableData: [state.selectedTableData.unshift(newData)]}))
+        setTableData: (newData) => {
+            set((state) => ({ selectedTableData: [{ ...newData }, ...state.selectedTableData] }))
+        },
+        getData: () => {
+            return get().selectedTableData
+        }
+    }),{
+        name: "storagedsds", // name of the item in the storage (must be unique)
+        skipHydration: true,
+    }));
 
 
 // const useGlobalStore = create((set) => {

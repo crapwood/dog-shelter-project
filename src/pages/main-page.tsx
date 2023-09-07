@@ -1,46 +1,24 @@
 // @ts-nocheck
-import React from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Box, Divider } from "@mui/material";
+import React, { useEffect } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import { Box, Divider, LinearProgress } from "@mui/material";
 import '../styles/main-page.scss'
 import Grid from "@mui/material/Grid";
 import Navbar from "@/components/navbar";
 import Filters from "@/components/filters";
 import { useGlobalStore } from "@/store/global-items.store";
-
-const columns: GridColDef[] = [
-    { field: 'id', headerName: 'מס.', width: 70 },
-    { field: 'name', headerName: 'שם', width: 200 },
-    { field: 'breed', headerName: 'גזע', width: 200 },
-    {
-        field: 'gender',
-        headerName: 'מין',
-        // type: 'number',
-        width: 100,
-    },
-    // {
-    //     field: 'diskit',
-    //     headerName: 'Diskit',
-    //     // description: 'This column has a value getter and is not sortable.',
-    //     // sortable: false,
-    //     width: 160
-    //     // valueGetter: (params: GridValueGetterParams) =>
-    //     //     `${params.row.name || ''} ${params.row.breed || ''}`,
-    // },
-    { field: 'chip', headerName: 'מס. שבב', width: 250 },
-    { field: 'bitan', headerName: 'ביתן', width: 180 },
-    { field: 'status', headerName: 'סטטוס', width: 150 },
-];
+import { columns } from "@/constants/constants";
 
 
 
 export default function MainPage() {
-    const {selectedTableData, getData} = useGlobalStore();
-    // console.log(getData(), 'getData')
-    // console.log(selectedTableData)
+    useEffect(() => {
+        useGlobalStore.persist.rehydrate();
+    }, [])
+    const {selectedTableData} = useGlobalStore();
 
     function setupRowData(){
-        return getData().map((data, index) => {
+        return selectedTableData.map((data, index) => {
             index++;
             return {...data, id: index}
         })
@@ -59,6 +37,10 @@ export default function MainPage() {
                 </Grid>
                 <Grid item xs={12} sx={{ display: 'flex', justifyContent: 'center' }}>
                     <DataGrid
+                        slots={{
+                            loadingOverlay: LinearProgress,
+                        }}
+                        // loading
                         rows={setupRowData()}
                         columns={columns}
                         // initialState={{

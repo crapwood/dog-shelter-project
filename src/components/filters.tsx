@@ -2,81 +2,17 @@
 import React from 'react';
 import {
     Box,
+    Button,
     FormControl,
     InputLabel,
     MenuItem,
     OutlinedInput,
     Select,
     TextField,
-    Typography,
-    Button
+    Typography
 } from "@mui/material";
+import { bitan, breed, gender, ITEM_HEIGHT, ITEM_PADDING_TOP, status } from "@/constants/constants";
 
-export const breed = [
-    'אירדייל טרייר',
-    'אלסקן מלמוט',
-    'בול טרייר',
-    'ביגל',
-    'בולמסטיף',
-    'אמסטף',
-    'דוברמן',
-    'דלמטי',
-    'האסקי סיבירי',
-    'טרייר טיבטי',
-];
-const gender = [
-    'זכר',
-    'נקבה'
-];
-
-export const bitan =
-    [
-        'גוריה 1',
-        'פנסיון',
-        'גוריה 2',
-        'באו באו',
-        'מכלאה כפולה 1',
-        'מכלאה כפולה 2',
-        'ביתן 1 עליון',
-        'ביתן 2 עליון',
-        'ביתן 3 עליון',
-        'ביתן 4 עליון',
-        'ביתן 5 עליון',
-        'מכלאת פטרה',
-        'מסדרון 1',
-        'מסדרון 2',
-        'מסדרון 3',
-        'חדר 4',
-        'חדר 5',
-        'חדר 6',
-        'חדר 7',
-        'חדר 8',
-        'חדר 9',
-        'ביתן מול החתוליה',
-        'A',
-        'B',
-        'C',
-        'ביתן 1 תחתון',
-        'ביתן 2 תחתון',
-        'ביתן 3 תחתון',
-        'ביתן 4 תחתון',
-        'ביתן 5 תחתון',
-        'ביתן 6 תחתון',
-        'ביתן 7 תחתון',
-        'משרד גדול',
-        'משוחררים',
-        'מרפאה',
-        'קרוואן',
-        'מלונה בכניסה',
-        'מלונה ליד חד"א',
-        'מלונה בכניסה למסדרון',
-        'מלונה ליד חדר צוות',
-        'מלונה ליד המחסן'
-    ]
-const status = ['נוכח', 'עזב']
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
 const MenuProps = {
     PaperProps: {
         style: {
@@ -153,7 +89,6 @@ function Filters() {
                         <MenuItem
                             key={name}
                             value={name}
-                            // style={getStyles(name, personName, theme)}
                         >
                             {name}
                         </MenuItem>
@@ -175,7 +110,6 @@ function Filters() {
                         <MenuItem
                             key={name}
                             value={name}
-                            // style={getStyles(name, personName, theme)}
                         >
                             {name}
                         </MenuItem>
@@ -196,7 +130,6 @@ function Filters() {
                         <MenuItem
                             key={name}
                             value={name}
-                            // style={getStyles(name, personName, theme)}
                         >
                             {name}
                         </MenuItem>

@@ -9,20 +9,24 @@ import {
     FormControlLabel,
     Radio,
     FormControl,
-    RadioGroup, InputLabel, Select, OutlinedInput, MenuItem, Typography
+    RadioGroup,
+    Select,
+    MenuItem,
+    Typography
 } from "@mui/material";
 import Navbar from "@/components/navbar";
 import { useForm, Controller } from "react-hook-form";
-import { breed, bitan } from "@/components/filters";
-import { tempData } from "@/constants/constants";
 import { useGlobalStore } from "@/store/global-items.store";
+import { useRouter } from "next/navigation";
+import { bitan, breed } from "@/constants/constants";
 
 function NewAnimal() {
-    const {selectedTableData, setTableData, getData} = useGlobalStore();
+    const { selectedTableData, setTableData } = useGlobalStore();
+    const { push } = useRouter();
     const { handleSubmit, control, reset } = useForm({
         defaultValues: {
             name: '',
-            chip: 111111111111111,
+            chip: '',
             status: 'נוכח',
             gender: 'זכר',
             breed: '',
@@ -30,16 +34,13 @@ function NewAnimal() {
         }
     });
     const onSubmit = data => {
-        // { breed: 'Snow', name: 'Jon', gender: 'זכר', chip: 985113003649217, bitan: 'פנסיון', status: 'נוכח' }
-        // // console.log(data)
-        let temp = [...selectedTableData];
-        temp.unshift(data);
-        // console.log(temp, 'temp')
-        // setTableData(temp)
-        setTableData(data)
-        // console.log(selectedTableData)
-        console.log(getData());
+        if (selectedTableData) {
+            setTableData(data)
+            push('/main-page');
+        }
+
     };
+
     return (
         <Box>
             <Navbar/>
@@ -52,7 +53,7 @@ function NewAnimal() {
                         margin: '24px',
                         minWidth: '600px'
                     }}>
-                        <Box sx={{display: 'flex', justifyContent: 'center'}}>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                             <Typography variant="h4">קליטת חיה חדשה</Typography>
                         </Box>
                         <Controller
@@ -62,7 +63,7 @@ function NewAnimal() {
                             render={({ field }) =>
                                 <>
                                     <FormLabel id="demo-textfield-label">שם*</FormLabel>
-                                    <TextField {...field} aria-labelledby="demo-textfield-label" />
+                                    <TextField {...field} aria-labelledby="demo-textfield-label"/>
                                     <br/>
                                 </>
                             }
@@ -94,21 +95,21 @@ function NewAnimal() {
                                 <>
                                     <FormLabel id="demo-textfield-label">גזע* </FormLabel>
 
-                                        <Select
-                                            {...field}
-                                            labelId="demo-multiple-name-label"
-                                            aria-labelledby="demo-textfield-label"
-                                            id="demo-multiple-name"
-                                        >
-                                            {breed.map((name) => (
-                                                <MenuItem
-                                                    key={name}
-                                                    value={name}
-                                                >
-                                                    {name}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
+                                    <Select
+                                        {...field}
+                                        labelId="demo-multiple-name-label"
+                                        aria-labelledby="demo-textfield-label"
+                                        id="demo-multiple-name"
+                                    >
+                                        {breed.map((name) => (
+                                            <MenuItem
+                                                key={name}
+                                                value={name}
+                                            >
+                                                {name}
+                                            </MenuItem>
+                                        ))}
+                                    </Select>
                                     <br/>
 
                                 </>
@@ -121,7 +122,8 @@ function NewAnimal() {
                             render={({ field }) =>
                                 <>
                                     <FormLabel id="demo-textfield-label">מס. שבב</FormLabel>
-                                    <TextField {...field} aria-labelledby="demo-textfield-label" type="number" sx={{ width: '300px' }}/>
+                                    <TextField {...field} aria-labelledby="demo-textfield-label" type="number"
+                                               sx={{ width: '300px' }}/>
                                     <br/>
                                 </>
                             }
@@ -154,8 +156,9 @@ function NewAnimal() {
                                 </>
                             }
                         />
-                        <Box sx={{display: 'flex', justifyContent: 'center'}}>
-                            <Button type="submit" variant="contained" sx={{ width: '200px', height: '56px' }} size="large">בצע קליטה</Button>
+                        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <Button type="submit" variant="contained" sx={{ width: '200px', height: '56px' }}
+                                    size="large">בצע קליטה</Button>
                         </Box>
                     </Box>
                 </form>

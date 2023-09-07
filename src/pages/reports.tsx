@@ -17,7 +17,6 @@ function Reports() {
                 <Grid item xs={3}>
                     <div style={{height: '100px'}}>TODO: Reports Page</div>
                 </Grid>
-
             </Grid>
         </Box>
     );

@@ -18,6 +18,8 @@ import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
+import FileCopyRoundedIcon from '@mui/icons-material/FileCopyRounded';
+import AssessmentRoundedIcon from '@mui/icons-material/AssessmentRounded';
 
 interface Props {
     /**
@@ -31,14 +33,23 @@ const drawerWidth = 240;
 enum NavItems  {
     HOME ='בית',
     FORMS = 'טפסים',
-    REPORTS = 'דו"חות'
+    REPORTS = 'דו"חות',
+    NEW_ANIMAL = 'הוסף חיה חדשה'
 }
-// const navItems = ['Home', 'About', 'Forms', 'Reports'];
 
 const linkNavItems: Record<NavItems, string> = {
     [NavItems.HOME]: '/main-page',
     [NavItems.FORMS]: '/forms',
-    [NavItems.REPORTS]: '/reports'
+    [NavItems.REPORTS]: '/reports',
+    [NavItems.NEW_ANIMAL]: '/new-animal'
+
+}
+
+const linkNavIcons: Record<NavItems, React.ReactNode> = {
+    [NavItems.HOME]: <HomeRoundedIcon />,
+    [NavItems.FORMS]: <FileCopyRoundedIcon />,
+    [NavItems.REPORTS]: <AssessmentRoundedIcon />,
+    [NavItems.NEW_ANIMAL]: <AddCircleIcon />
 }
 
 function Navbar(props: Props) {
@@ -95,22 +106,20 @@ function Navbar(props: Props) {
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {Object.keys(linkNavItems).map((item) => (
                             <Link href={`${linkNavItems[item as NavItems]}`} key={item}>
-                                <Button key={item} sx={{ color: '#fff' }}>
-                                    {item === 'בית' ? <HomeRoundedIcon /> : item}
+                                <Button key={item} sx={{ color: '#fff',':hover': {
+                                        bgcolor: 'rgba(0,0,0,0.5)', // theme.palette.primary.main
+                                        color: 'inherit',
+                                    } }}>
+                                    {linkNavIcons[item]}
+                                    <Typography
+                                        variant="body2"
+                                        sx={{marginLeft: '8px'}}
+                                    >
+                                        {item}
+                                    </Typography>
                                 </Button>
                             </Link>
                         ))}
-                        <Link href={'/new-animal'}>
-                            <Button sx={{ color: '#fff' }}>
-                                <AddCircleIcon />
-                                <Typography
-                                    variant="body2"
-                                >
-                                    הוסף חיה חדשה
-                                </Typography>
-                            </Button>
-
-                        </Link>
                     </Box>
                 </Toolbar>
             </AppBar>
