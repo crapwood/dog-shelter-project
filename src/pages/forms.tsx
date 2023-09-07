@@ -23,16 +23,16 @@ function Forms() {
                     </Box>
                 </Grid>
                 <Grid item xs={2}>
-                        <Button href={'/adoption-form.pdf'} variant="contained" size="large" endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס למאמצים</Button>
+                        <Button href={'/adoption-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס למאמצים</Button>
                 </Grid>
                 <Grid item xs={2}>
-                    <Button href={'/ikurim-form.pdf'} variant="contained" size="large" endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס תכנון עיקורים</Button>
+                    <Button href={'/ikurim-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס תכנון עיקורים</Button>
                 </Grid>
                 <Grid item xs={2}>
-                    <Button href={'/registration-form.pdf'} variant="contained" size="large" endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס קליטה</Button>
+                    <Button href={'/registration-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס קליטה</Button>
                 </Grid>
                 <Grid item xs={2}>
-                    <Button href={'/ikurim-assurance-form.pdf'} variant="contained" size="large" endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">התחייבות לעיקור</Button>
+                    <Button href={'/ikurim-assurance-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">התחייבות לעיקור</Button>
                 </Grid>
             </Grid>
         </Box>

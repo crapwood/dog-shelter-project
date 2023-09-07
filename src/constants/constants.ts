@@ -1,0 +1,103 @@
+export const tempData = [
+    { breed: 'דוברמן', name: 'כלב', gender: 'זכר', chip: 985113003649217, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'נקבה', chip: 985113003649218, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'זכר', chip: 985113003649219, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'ביגל', name: 'כלב', gender: 'נקבה', chip: 985113003649220, bitan: 'פנסיון', status: 'עזב' },
+    {
+        breed: 'טרייר טיבטי',
+        name: 'כלב',
+        gender: 'נקבה',
+        chip: 985113003649221,
+        bitan: 'מרפאה',
+        status: 'עזב'
+    },
+    { breed: 'דלמטי', name: null, gender: 'נקבה', chip: 985113003649222, bitan: 'פנסיון', status: 'עזב' },
+    { breed: 'אלסקן מלמוט', name: 'כלב', gender: 'נקבה', chip: 985113003649223, bitan: 'מרפאה', status: 'נוכח' },
+    { breed: 'אירדייל טרייר', name: 'כלב', gender: 'זכר', chip: 985113003649224, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'אמסטף', name: 'כלב', gender: 'זכר', chip: 985113003649225, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'דוברמן', name: 'כלב', gender: 'זכר', chip: 985113003649217, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'נקבה', chip: 985113003649218, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'זכר', chip: 985113003649219, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'ביגל', name: 'כלב', gender: 'נקבה', chip: 985113003649220, bitan: 'פנסיון', status: 'עזב' },
+    {
+
+        breed: 'טרייר טיבטי',
+        name: 'כלב',
+        gender: 'נקבה',
+        chip: 985113003649221,
+        bitan: 'מרפאה',
+        status: 'עזב'
+    },
+    { breed: 'דלמטי', name: null, gender: 'נקבה', chip: 985113003649222, bitan: 'פנסיון', status: 'עזב' },
+    { breed: 'אלסקן מלמוט', name: 'כלב', gender: 'נקבה', chip: 985113003649223, bitan: 'מרפאה', status: 'נוכח' },
+    { breed: 'אירדייל טרייר', name: 'כלב', gender: 'זכר', chip: 985113003649224, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'אמסטף', name: 'כלב', gender: 'זכר', chip: 985113003649225, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'דוברמן', name: 'כלב', gender: 'זכר', chip: 985113003649217, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'נקבה', chip: 985113003649218, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'זכר', chip: 985113003649219, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'ביגל', name: 'כלב', gender: 'נקבה', chip: 985113003649220, bitan: 'פנסיון', status: 'עזב' },
+    {
+
+        breed: 'טרייר טיבטי',
+        name: 'כלב',
+        gender: 'נקבה',
+        chip: 985113003649221,
+        bitan: 'מרפאה',
+        status: 'עזב'
+    },
+    { breed: 'דלמטי', name: null, gender: 'נקבה', chip: 985113003649222, bitan: 'פנסיון', status: 'עזב' },
+    { breed: 'אלסקן מלמוט', name: 'כלב', gender: 'נקבה', chip: 985113003649223, bitan: 'מרפאה', status: 'נוכח' },
+    { breed: 'אירדייל טרייר', name: 'כלב', gender: 'זכר', chip: 985113003649224, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'אמסטף', name: 'כלב', gender: 'זכר', chip: 985113003649225, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'דוברמן', name: 'כלב', gender: 'זכר', chip: 985113003649217, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'נקבה', chip: 985113003649218, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'זכר', chip: 985113003649219, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'ביגל', name: 'כלב', gender: 'נקבה', chip: 985113003649220, bitan: 'פנסיון', status: 'עזב' },
+    {
+
+        breed: 'טרייר טיבטי',
+        name: 'כלב',
+        gender: 'נקבה',
+        chip: 985113003649221,
+        bitan: 'מרפאה',
+        status: 'עזב'
+    },
+    { breed: 'דלמטי', name: null, gender: 'נקבה', chip: 985113003649222, bitan: 'פנסיון', status: 'עזב' },
+    { breed: 'אלסקן מלמוט', name: 'כלב', gender: 'נקבה', chip: 985113003649223, bitan: 'מרפאה', status: 'נוכח' },
+    { breed: 'אירדייל טרייר', name: 'כלב', gender: 'זכר', chip: 985113003649224, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'אמסטף', name: 'כלב', gender: 'זכר', chip: 985113003649225, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'דוברמן', name: 'כלב', gender: 'זכר', chip: 985113003649217, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'נקבה', chip: 985113003649218, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'זכר', chip: 985113003649219, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'ביגל', name: 'כלב', gender: 'נקבה', chip: 985113003649220, bitan: 'פנסיון', status: 'עזב' },
+    {
+
+        breed: 'טרייר טיבטי',
+        name: 'כלב',
+        gender: 'נקבה',
+        chip: 985113003649221,
+        bitan: 'מרפאה',
+        status: 'עזב'
+    },
+    { breed: 'דלמטי', name: null, gender: 'נקבה', chip: 985113003649222, bitan: 'פנסיון', status: 'עזב' },
+    { breed: 'אלסקן מלמוט', name: 'כלב', gender: 'נקבה', chip: 985113003649223, bitan: 'מרפאה', status: 'נוכח' },
+    { breed: 'אירדייל טרייר', name: 'כלב', gender: 'זכר', chip: 985113003649224, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'אמסטף', name: 'כלב', gender: 'זכר', chip: 985113003649225, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'דוברמן', name: 'כלב', gender: 'זכר', chip: 985113003649217, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'נקבה', chip: 985113003649218, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'בולמסטיף', name: 'כלב', gender: 'זכר', chip: 985113003649219, bitan: 'מרפאה', status: 'עזב' },
+    { breed: 'ביגל', name: 'כלב', gender: 'נקבה', chip: 985113003649220, bitan: 'פנסיון', status: 'עזב' },
+    {
+
+        breed: 'טרייר טיבטי',
+        name: 'כלב',
+        gender: 'נקבה',
+        chip: 985113003649221,
+        bitan: 'מרפאה',
+        status: 'עזב'
+    },
+    { breed: 'דלמטי', name: null, gender: 'נקבה', chip: 985113003649222, bitan: 'פנסיון', status: 'עזב' },
+    { breed: 'אלסקן מלמוט', name: 'כלב', gender: 'נקבה', chip: 985113003649223, bitan: 'מרפאה', status: 'נוכח' },
+    { breed: 'אירדייל טרייר', name: 'כלב', gender: 'זכר', chip: 985113003649224, bitan: 'פנסיון', status: 'נוכח' },
+    { breed: 'אמסטף', name: 'כלב', gender: 'זכר', chip: 985113003649225, bitan: 'מרפאה', status: 'עזב' },
+];

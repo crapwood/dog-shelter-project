@@ -17,6 +17,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Link from "@mui/material/Link";
 import HomeRoundedIcon from '@mui/icons-material/HomeRounded';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 interface Props {
     /**
@@ -99,6 +100,17 @@ function Navbar(props: Props) {
                                 </Button>
                             </Link>
                         ))}
+                        <Link href={'/new-animal'}>
+                            <Button sx={{ color: '#fff' }}>
+                                <AddCircleIcon />
+                                <Typography
+                                    variant="body2"
+                                >
+                                    הוסף חיה חדשה
+                                </Typography>
+                            </Button>
+
+                        </Link>
                     </Box>
                 </Toolbar>
             </AppBar>
