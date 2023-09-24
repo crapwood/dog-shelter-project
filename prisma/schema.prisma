@@ -1,0 +1,123 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model actualcare {
+  careID   Int       @id
+  uniqNum  Int?
+  careDate DateTime? @db.Date
+  workerID Int?
+
+  @@index([uniqNum], map: "uniqNum2_idx")
+}
+
+model actualvacc {
+  actualvaccId Int       @id
+  uniqNum      Int?
+  vaccName     String?   @db.VarChar(45)
+  vaccDate     DateTime? @db.Date
+  workerID     Int?
+
+  @@index([uniqNum], map: "uniqNum1_idx")
+  @@ignore
+}
+
+model adopters {
+  adopterID  Int     @id
+  name       String? @db.VarChar(45)
+  familyname String? @db.VarChar(45)
+  address    String? @db.VarChar(45)
+  cityCode   Int?
+  phone      Int?
+}
+
+model adoption {
+  adopterID    Int       @id
+  uniqNum      Int
+  adoptionDate DateTime? @db.Date
+  workerID     Int?
+
+  @@index([adopterID], map: "adopterID_idx")
+  @@index([uniqNum], map: "uniqNum_idx")
+  @@ignore
+}
+
+model cityinstate {
+  cityinstateId Int     @id
+  statename     String  @db.VarChar(45)
+  cityname      String? @db.VarChar(45)
+  cityCode      Int?
+
+  @@index([statename], map: "statename_idx")
+  @@ignore
+}
+
+model delivers {
+  deliverID  Int     @id
+  name       String? @db.VarChar(45)
+  familyname String? @db.VarChar(45)
+  address    String? @db.VarChar(45)
+  cityCode   Int?
+  phone      Int?
+}
+
+model delivery {
+  deliverID    Int       @id
+  uniqNum      Int
+  deliveryDate DateTime? @db.Date
+  workerID     Int?
+
+  @@index([deliverID], map: "deliverID_idx")
+  @@index([uniqNum], map: "uniqNum_idx")
+  @@ignore
+}
+
+model dogs {
+  uniqNum     String    @id @default(uuid())
+  chipNum     String?
+  diskit      Int?
+  name        String?   @db.VarChar(45)
+  status      String?   @db.VarChar(45)
+  cabin       String?   @db.VarChar(45)
+  breed       String?   @db.VarChar(45)
+  size        String?   @db.VarChar(45)
+  gender      String?   @db.VarChar(45)
+  birthDate   DateTime? @db.Date
+  arriveCause DateTime  @default(now())
+  leaveCause  DateTime? @db.Date
+}
+
+model payment {
+  payCode   Int       @id
+  adopterID Int?
+  payDate   DateTime? @db.Date
+  amount    Int?
+  reason    String?   @db.VarChar(45)
+
+  @@index([adopterID], map: "adopterID1_idx")
+}
+
+model states {
+  statename String  @id @db.VarChar(45)
+  vetName   String? @db.VarChar(45)
+  phone     Int?
+}
+
+model vacclist {
+  vaccName String  @id @db.VarChar(45)
+  freq     String? @db.VarChar(45)
+}
+
+model workers {
+  workerID   Int     @id
+  name       String? @db.VarChar(45)
+  familyname String? @db.VarChar(45)
+  job        String? @db.VarChar(45)
+  phone      Int?
+}
