@@ -9,7 +9,7 @@ import Filters from "@/components/filters";
 import { useGlobalStore } from "@/store/global-items.store";
 import { columns } from "@/constants/constants";
 import axios from "../../node_modules/axios/index";
-import prisma from "@/db/db";
+import prisma from "../db/db";
 
 export default function MainPage({ data }) {
   // const [data, setData] = useState([]);
