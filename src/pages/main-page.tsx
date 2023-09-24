@@ -11,15 +11,15 @@ import { columns } from "@/constants/constants";
 import axios from "../../node_modules/axios/index";
 import prisma from "../db/db";
 
-export default function MainPage({ data }) {
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const response = await axios.get(`/api/db-queries`);
-  //     setData(response.data);
-  //   }
-  //   fetchData();
-  // }, []);
+export default function MainPage() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const response = await axios.get(`/api/db-queries`);
+      setData(response.data);
+    }
+    fetchData();
+  }, []);
   console.log(data, "frommain");
 
   function setupRowData() {
@@ -73,12 +73,12 @@ export default function MainPage({ data }) {
   );
 }
 
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await prisma.dogs.findMany();
-  const data = JSON.parse(JSON.stringify(res));
-  console.log(data);
+// export async function getServerSideProps() {
+//   // Fetch data from external API
+//   const res = await prisma.dogs.findMany();
+//   const data = JSON.parse(JSON.stringify(res));
+//   console.log(data);
 
-  // Pass data to the page via props
-  return { props: { data } };
-}
+//   // Pass data to the page via props
+//   return { props: { data } };
+// }
