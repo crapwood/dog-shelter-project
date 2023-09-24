@@ -45,8 +45,7 @@ function NewAnimal() {
       },
       body: JSON.stringify(formData),
     });
-
-    push("/main-page");
+    await push("/main-page");
   };
 
   return (

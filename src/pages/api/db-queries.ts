@@ -12,10 +12,10 @@ export default async function handler(req, res) {
   }
   if (req.method === "POST") {
     try {
-      await prisma.dogs.create({
+      const newData = await prisma.dogs.create({
         data: { ...req.body },
       });
-      res.status(200).json({ message: "Success" });
+      res.status(200).json({ data: newData });
     } catch (err) {
       res.status(500).send({ error: err });
     }

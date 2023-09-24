@@ -8,19 +8,18 @@ import Navbar from "@/components/navbar";
 import Filters from "@/components/filters";
 import { useGlobalStore } from "@/store/global-items.store";
 import { columns } from "@/constants/constants";
-import axios from "../../node_modules/axios/index";
 import prisma from "../db/db";
 
-export default function MainPage({ data }) {
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const req = await fetch(`/api/db-queries`);
-  //     const response = await req.json();
-  //     setData(response);
-  //   }
-  //   fetchData();
-  // }, []);
+export default function MainPage() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    async function fetchData() {
+      const req = await fetch(`/api/db-queries`, { cache: "no-cache" });
+      const response = await req.json();
+      setData(response);
+    }
+    fetchData();
+  }, []);
 
   function setupRowData() {
     return data.map((entry, index) => {
@@ -41,10 +40,10 @@ export default function MainPage({ data }) {
         </Grid>
         <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
           <DataGrid
-            slots={{
-              loadingOverlay: LinearProgress,
-            }}
-            // loading
+            // slots={{
+            //   loadingOverlay: LinearProgress,
+            // }}
+            loading={data.length ? false : true}
             rows={setupRowData()}
             columns={columns}
             // initialState={{
@@ -73,10 +72,10 @@ export default function MainPage({ data }) {
   );
 }
 
-export async function getStaticProps() {
-  // Fetch data from external API
-  const res = await prisma.dogs.findMany();
-  const data = JSON.parse(JSON.stringify(res));
-  // Pass data to the page via props
-  return { props: { data }, revalidate: 60 };
-}
+// export async function getStaticProps() {
+//   // Fetch data from external API
+//   const res = await prisma.dogs.findMany();
+//   const data = JSON.parse(JSON.stringify(res));
+//   // Pass data to the page via props
+//   return { props: { data }, revalidate: 60 };
+// }
