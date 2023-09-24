@@ -3,13 +3,21 @@ import prisma from "../../db/db";
 
 export default async function handler(req, res) {
   if (req.method === "GET") {
-    const data = await prisma.dogs.findMany();
-    res.status(200).json(data);
+    try {
+      const data = await prisma.dogs.findMany();
+      res.status(200).json(data);
+    } catch (err) {
+      res.status(500).send({ error: err });
+    }
   }
   if (req.method === "POST") {
-    console.log(req.body);
-    await prisma.dogs.create({
-      data: { ...req.body },
-    });
+    try {
+      await prisma.dogs.create({
+        data: { ...req.body },
+      });
+      res.status(200).json({ message: "Success" });
+    } catch (err) {
+      res.status(500).send({ error: err });
+    }
   }
 }

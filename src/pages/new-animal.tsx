@@ -36,9 +36,8 @@ function NewAnimal() {
     },
   });
   const onSubmit = (data) => {
-    const baseUrl = window.location.origin;
     const temp = { ...data, diskit: Number(data.diskit) };
-    axios.post(`${baseUrl}/api/db-queries`, temp);
+    axios.post(`/api/db-queries`, temp);
     push("/main-page");
   };
 

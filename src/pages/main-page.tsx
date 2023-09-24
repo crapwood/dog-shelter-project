@@ -9,21 +9,18 @@ import Filters from "@/components/filters";
 import { useGlobalStore } from "@/store/global-items.store";
 import { columns } from "@/constants/constants";
 import axios from "../../node_modules/axios/index";
+import prisma from "@/db/db";
 
-export default function MainPage() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      const baseUrl = window.location.origin;
-      const response = await axios.get(`${baseUrl}/api/db-queries`);
-      setData(response.data);
-    }
-    fetchData();
-  }, []);
+export default function MainPage({ data }) {
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const response = await axios.get(`/api/db-queries`);
+  //     setData(response.data);
+  //   }
+  //   fetchData();
+  // }, []);
   console.log(data, "frommain");
-
-  const { selectedTableData } = useGlobalStore();
-  //   console.log(selectedTableData);
 
   function setupRowData() {
     return data.map((entry, index) => {
@@ -76,18 +73,12 @@ export default function MainPage() {
   );
 }
 
-// export async function getStaticProps() {
-//   // Call an external API endpoint to get posts.
-//   // You can use any data fetching library
-//   // const res = await prisma.dogs.findMany();
-//   const res = {};
-//   const data = await res;
+export async function getServerSideProps() {
+  // Fetch data from external API
+  const res = await prisma.dogs.findMany();
+  const data = JSON.parse(JSON.stringify(res));
+  console.log(data);
 
-//   // By returning { props: { posts } }, the Blog component
-//   // will receive `posts` as a prop at build time
-//   return {
-//     props: {
-//       data,
-//     },
-//   };
-// }
+  // Pass data to the page via props
+  return { props: { data } };
+}
