@@ -11,16 +11,16 @@ import { columns } from "@/constants/constants";
 import axios from "../../node_modules/axios/index";
 import prisma from "../db/db";
 
-export default function MainPage() {
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get(`/api/db-queries`);
-      setData(response.data);
-    }
-    fetchData();
-  }, []);
-  console.log(data, "frommain");
+export default function MainPage({ data }) {
+  // const [data, setData] = useState([]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     const req = await fetch(`/api/db-queries`);
+  //     const response = await req.json();
+  //     setData(response);
+  //   }
+  //   fetchData();
+  // }, []);
 
   function setupRowData() {
     return data.map((entry, index) => {
@@ -73,12 +73,10 @@ export default function MainPage() {
   );
 }
 
-// export async function getServerSideProps() {
-//   // Fetch data from external API
-//   const res = await prisma.dogs.findMany();
-//   const data = JSON.parse(JSON.stringify(res));
-//   console.log(data);
-
-//   // Pass data to the page via props
-//   return { props: { data } };
-// }
+export async function getStaticProps() {
+  // Fetch data from external API
+  const res = await prisma.dogs.findMany();
+  const data = JSON.parse(JSON.stringify(res));
+  // Pass data to the page via props
+  return { props: { data }, revalidate: 60 };
+}

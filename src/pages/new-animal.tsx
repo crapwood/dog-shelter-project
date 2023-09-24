@@ -35,9 +35,17 @@ function NewAnimal() {
       cabin: "",
     },
   });
-  const onSubmit = (data) => {
-    const temp = { ...data, diskit: Number(data.diskit) };
-    axios.post(`/api/db-queries`, temp);
+  const onSubmit = async (data) => {
+    const formData = { ...data, diskit: Number(data.diskit) };
+    await fetch("/api/db-queries", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
     push("/main-page");
   };
 
