@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import { Box, Button } from "@mui/material";
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 
-function Forms() {
+function FormsDownload() {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2} direction="row"
@@ -39,4 +39,4 @@ function Forms() {
     );
 }
 
-export default Forms;
+export default FormsDownload;

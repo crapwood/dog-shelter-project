@@ -8,9 +8,9 @@ import Navbar from "@/components/navbar";
 import Filters from "@/components/filters";
 import { useGlobalStore } from "@/store/global-items.store";
 import { columns } from "@/constants/constants";
-import prisma from "../db/db";
 
 export default function MainPage() {
+  const {viewMode} = useGlobalStore();
   const [data, setData] = useState([]);
   useEffect(() => {
     async function fetchData() {

@@ -1,34 +1,14 @@
 // @ts-nocheck
 import { create } from 'zustand';
-import { persist, createJSONStorage } from "zustand/middleware";
-import { tempData } from "@/constants/constants";
+import { VIEW_MODE } from "@/enums/enums";
 
 
 interface GlobalStore {
-    selectedTableData: any;
-    setTableData: (newData: any) => void;
-    getData: () => any;
+    viewMode: VIEW_MODE | undefined;
+    setViewMode: (mode: VIEW_MODE | undefined) => void;
 }
 
-export const useGlobalStore = create<GlobalStore>(persist(
-    (set, get) => ({
-        selectedTableData: tempData,
-        setTableData: (newData) => {
-            set((state) => ({ selectedTableData: [{ ...newData } ,...state.selectedTableData] }))
-        },
-        getData: () => {
-            return get().selectedTableData
-        }
-    }),{
-        name: "storaged", // name of the item in the storage (must be unique)
-        storage: createJSONStorage(() => sessionStorage),
-        skipHydration: true,
+export const useGlobalStore = create<GlobalStore>((set) => ({
+    viewMode: undefined,
+    setViewMode: (viewMode) => set(() => ({ viewMode }))
     }));
-
-
-// const useGlobalStore = create((set) => {
-//     return {
-//         selectedTableData: tempData,
-//         setTableData: () => set((state) => ({ selectedTableData: [...state.selectedTableData] })),
-//     };
-// });

@@ -6,7 +6,44 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 export const ITEM_HEIGHT = 48;
 export const ITEM_PADDING_TOP = 8;
 
-export const cabins = [
+export const columns: GridColDef[] = [
+  { field: "id", headerName: "מס.", width: 70 },
+  { field: "name", headerName: "שם", width: 150 },
+  { field: "breed", headerName: "גזע", width: 150 },
+  {
+    field: "gender",
+    headerName: "מין",
+    // type: 'number',
+    width: 100,
+  },
+  { field: "size", headerName: "גודל", width: 100 },
+  // {
+  //     field: 'diskit',
+  //     headerName: 'Diskit',
+  //     // description: 'This column has a value getter and is not sortable.',
+  //     // sortable: false,
+  //     width: 160
+  //     // valueGetter: (params: GridValueGetterParams) =>
+  //     //     `${params.row.name || ''} ${params.row.breed || ''}`,
+  // },
+  { field: "diskit", headerName: "מס. דיסקיט", width: 250 },
+  { field: "chipNum", headerName: "מס. שבב", width: 250 },
+  { field: "cabin", headerName: "ביתן", width: 180 },
+  {
+    field: "status",
+    headerName: "סטטוס",
+    width: 150,
+    renderCell: (params) => {
+      if (params.value === "נוכח") {
+        return <CheckCircleOutlineIcon color="success" />;
+      } else {
+        return <HighlightOffIcon color="error" />;
+      }
+    },
+  },
+];
+
+export const cabinsFilterOptions = [
   "גוריה 1",
   "פנסיון",
   "גוריה 2",
@@ -49,42 +86,36 @@ export const cabins = [
   "מלונה ליד חדר צוות",
   "מלונה ליד המחסן",
 ];
-export const columns: GridColDef[] = [
-  { field: "id", headerName: "מס.", width: 70 },
-  { field: "name", headerName: "שם", width: 150 },
-  { field: "breed", headerName: "גזע", width: 150 },
-  {
-    field: "gender",
-    headerName: "מין",
-    // type: 'number',
-    width: 100,
-  },
-  { field: "size", headerName: "גודל", width: 100 },
-  // {
-  //     field: 'diskit',
-  //     headerName: 'Diskit',
-  //     // description: 'This column has a value getter and is not sortable.',
-  //     // sortable: false,
-  //     width: 160
-  //     // valueGetter: (params: GridValueGetterParams) =>
-  //     //     `${params.row.name || ''} ${params.row.breed || ''}`,
-  // },
-  { field: "diskit", headerName: "מס. דיסקיט", width: 250 },
-  { field: "chipNum", headerName: "מס. שבב", width: 250 },
-  { field: "cabin", headerName: "ביתן", width: 180 },
-  {
-    field: "status",
-    headerName: "סטטוס",
-    width: 150,
-    renderCell: (params) => {
-      if (params.value === "נוכח") {
-        return <CheckCircleOutlineIcon color="success" />;
-      } else {
-        return <HighlightOffIcon color="error" />;
-      }
-    },
-  },
+
+export const breedFilterOptions = [
+  "אירדייל טרייר",
+  "אלסקן מלמוט",
+  "בול טרייר",
+  "ביגל",
+  "בולמסטיף",
+  "אמסטף",
+  "דוברמן",
+  "דלמטי",
+  "האסקי סיבירי",
+  "טרייר טיבטי",
 ];
+
+export const genderFilterOptions = ["זכר", "נקבה"];
+
+export const statusFilterOptions = ["נוכח", "עזב"];
+
+export const sizeFilterOptions = [
+  "ננסי",
+  "קטן",
+  "בינוני",
+  "גדול",
+  "ענק",
+  "ננסי קטן",
+  "ננסי גדול",
+  "בינוני קטן",
+  "בינוני גדול"
+]
+
 
 export const tempData = [
   {
@@ -238,20 +269,3 @@ export const tempData = [
     diskit: 1335557686,
   },
 ];
-
-export const breed = [
-  "אירדייל טרייר",
-  "אלסקן מלמוט",
-  "בול טרייר",
-  "ביגל",
-  "בולמסטיף",
-  "אמסטף",
-  "דוברמן",
-  "דלמטי",
-  "האסקי סיבירי",
-  "טרייר טיבטי",
-];
-
-export const gender = ["זכר", "נקבה"];
-
-export const status = ["נוכח", "עזב"];

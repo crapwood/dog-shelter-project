@@ -12,12 +12,13 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  cabins,
-  breed,
-  gender,
+  cabinsFilterOptions,
+  breedFilterOptions,
+  genderFilterOptions,
   ITEM_HEIGHT,
   ITEM_PADDING_TOP,
-  status,
+  statusFilterOptions,
+  sizeFilterOptions
 } from "@/constants/constants";
 
 const MenuProps = {
@@ -30,23 +31,78 @@ const MenuProps = {
 };
 
 function Filters() {
-  const [breedName, setBreedName] = React.useState([]);
-  const [genderName, setGenderName] = React.useState("");
-  const handleChange = (event) => {
+  const [name, setName] = React.useState("");
+  const [breed, setBreed] = React.useState("");
+  const [sex, setSex] = React.useState("");
+  const [diskit, setDiskit] = React.useState("");
+  const [chipNum, setChipNum] = React.useState("");
+  const [bitan, setBitan] = React.useState("");
+  const [status, setStatus] = React.useState("");
+  const [size, setSize] = React.useState("");
+
+  const handleChangeBreed = (event) => {
     const {
       target: { value },
     } = event;
-    setBreedName(
-      // On autofill we get a stringified value.
+    setBreed(
       typeof value === "string" ? value.split(",") : value
     );
   };
-
-  const handleChangeGender = (event) => {
+  const handleChangeName = (event) => {
     const {
       target: { value },
     } = event;
-    setGenderName(value);
+    setName(
+        typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleChangeSex = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSex(
+        typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleChangeDiskit = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setDiskit(
+        typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleChangeChipNum = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setChipNum(
+        typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleChangeBitan = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setBitan(
+        typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleChangeStatus = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setStatus(
+        typeof value === "string" ? value.split(",") : value
+    );
+  };
+  const handleChangeSize = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setSize(
+        typeof value === "string" ? value.split(",") : value
+    );
   };
 
   return (
@@ -59,18 +115,18 @@ function Filters() {
         padding: "24px",
       }}
     >
-      <TextField id="standard-basic" label="שם" variant="outlined" />
+      <TextField id="standard-basic" label="שם" variant="outlined" onChange={handleChangeName}/>
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-name-label">גזע</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={breedName}
-          onChange={handleChange}
+          value={breed}
+          onChange={handleChangeBreed}
           input={<OutlinedInput label="Breed" />}
           MenuProps={MenuProps}
         >
-          {breed.map((name) => (
+          {breedFilterOptions.map((name) => (
             <MenuItem key={name} value={name}>
               {name}
             </MenuItem>
@@ -83,30 +139,48 @@ function Filters() {
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={genderName}
-          onChange={handleChangeGender}
+          value={sex}
+          onChange={handleChangeSex}
           input={<OutlinedInput label="Gender" />}
           MenuProps={MenuProps}
         >
-          {gender.map((name) => (
+          {genderFilterOptions.map((name) => (
             <MenuItem key={name} value={name}>
               {name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
-      <TextField id="standard-basic" label="שבב" variant="outlined" />
+      <FormControl sx={{ m: 1, width: 300 }}>
+        <InputLabel id="demo-multiple-name-label">גודל</InputLabel>
+        <Select
+            labelId="demo-multiple-name-label"
+            id="demo-multiple-name"
+            value={size}
+            onChange={handleChangeSize}
+            input={<OutlinedInput label="Breed" />}
+            MenuProps={MenuProps}
+        >
+          {sizeFilterOptions.map((name) => (
+              <MenuItem key={name} value={name}>
+                {name}
+              </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <TextField id="standard-basic" label="מס. דיסקיט" variant="outlined" onChange={handleChangeDiskit}/>
+      <TextField id="standard-basic" label="מס. שבב" variant="outlined" onChange={handleChangeChipNum}/>
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-name-label">ביתן</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={breedName}
-          onChange={handleChange}
+          value={bitan}
+          onChange={handleChangeBitan}
           input={<OutlinedInput label="Name" />}
           MenuProps={MenuProps}
         >
-          {cabins.map((name) => (
+          {cabinsFilterOptions.map((name) => (
             <MenuItem key={name} value={name}>
               {name}
             </MenuItem>
@@ -118,12 +192,12 @@ function Filters() {
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={breedName}
-          onChange={handleChange}
+          value={status}
+          onChange={handleChangeStatus}
           input={<OutlinedInput label="Name" />}
           MenuProps={MenuProps}
         >
-          {status.map((name) => (
+          {statusFilterOptions.map((name) => (
             <MenuItem key={name} value={name}>
               {name}
             </MenuItem>
