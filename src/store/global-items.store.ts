@@ -12,6 +12,10 @@ interface GlobalStore {
     setFilterName: (name: string ) => void;
     shouldFilter: boolean;
     setShouldFilter: (shouldFilter: boolean) => void;
+    filterGender: string | undefined;
+    setFilterGender: (name: string ) => void;
+    filterStatus: string | undefined;
+    setFilterStatus: (name: string ) => void;
 }
 
 export const useGlobalStore = create<GlobalStore>((set) => ({
@@ -22,5 +26,9 @@ export const useGlobalStore = create<GlobalStore>((set) => ({
     filterName: "",
     setFilterName: (filterName) => set(()=> ({filterName})),
     shouldFilter: false,
-    setShouldFilter: (shouldFilter => set(()=> ({shouldFilter})))
+    setShouldFilter: (shouldFilter => set(()=> ({shouldFilter}))),
+    filterGender: "",
+    setFilterGender: (filterGender) => set(()=> ({filterGender})),
+    filterStatus: "",
+    setFilterStatus: (filterStatus) => set(()=> ({filterStatus})),
     }));

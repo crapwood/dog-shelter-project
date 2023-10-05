@@ -32,7 +32,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
 export default function MainPage() {
-    const { viewMode, selectedRowFromGrid, setSelectedRowFromGrid, shouldFilter, filterName } = useGlobalStore();
+    const { viewMode, selectedRowFromGrid, setSelectedRowFromGrid, shouldFilter, filterName, filterGender, filterStatus, setShouldFilter } = useGlobalStore();
     const [data, setData] = useState([]);
     const [selectedRow, setSelectedRow] = useState<>({});
     const [openSidepanel, setOpenSidepanel] = useState(false)
@@ -62,14 +62,15 @@ export default function MainPage() {
                     'Content-Type': 'application/json'
                 },
                 cache: "no-cache",
-                body: JSON.stringify({name: filterName, shouldFilter: shouldFilter})
+                body: JSON.stringify({name: filterName, shouldFilter: shouldFilter, gender: filterGender, status: filterStatus})
             });
             const response = await req.json();
             setData(response);
+
         }
 
         fetchData();
-    }, [shouldFilter]);
+    }, [shouldFilter, filterName, filterGender, filterStatus]);
 
     useEffect(() => {
         const defaults = {

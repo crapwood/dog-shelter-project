@@ -35,15 +35,15 @@ function NewAnimal() {
         setViewMode(undefined);
         const formData = { ...data, diskit: Number(data.diskit) };
         console.log(formData)
-        // await fetch("/api/db-queries", {
-        //   method: "POST",
-        //   headers: {
-        //     Accept: "application/json",
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(formData),
-        // });
-        // await push("/main-page");
+        await fetch("/api/db-queries", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        await push("/main-page");
     };
     const handleExpand =
         (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {

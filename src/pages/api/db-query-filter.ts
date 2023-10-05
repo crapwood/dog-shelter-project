@@ -15,8 +15,10 @@ export default async function handler(req, res) {
             const payload = await req.body;
             console.log(payload, 'req.body')
             const filters = handleFilters(payload)
+
             if(payload.shouldFilter){
-                const data = await prisma.dogs.findMany(filters);
+                console.log(filters)
+                const data = await prisma.dogs.findMany({ ...filters });
                 res.status(200).json(data);
             }else{
                 const data = await prisma.dogs.findMany();
@@ -32,12 +34,16 @@ export default async function handler(req, res) {
     }
 }
 
+// function checkFilters(){
+//
+// }
 
 function handleFilters(filters) {
-    let filter = {
+    return {
         where: {
-            name: { equals: filters.name }
+            name: { equals: filters.name[0] },
+            gender: {equals: filters.gender[0]},
+            status: {equals: filters.status[0]}
         }
-    }
-    return filter;
+    };
 }

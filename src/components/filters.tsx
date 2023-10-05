@@ -32,7 +32,7 @@ const MenuProps = {
 };
 
 function Filters() {
-  const { filterName, setFilterName, setShouldFilter } = useGlobalStore();
+  const { filterName, setFilterName, setShouldFilter, filterGender, setFilterGender, filterStatus, setFilterStatus } = useGlobalStore();
   const [name, setName] = React.useState("");
   const [breed, setBreed] = React.useState("");
   const [sex, setSex] = React.useState("");
@@ -62,7 +62,7 @@ function Filters() {
     const {
       target: { value },
     } = event;
-    setSex(
+    setFilterGender(
         typeof value === "string" ? value.split(",") : value
     );
   };
@@ -94,7 +94,7 @@ function Filters() {
     const {
       target: { value },
     } = event;
-    setStatus(
+    setFilterStatus(
         typeof value === "string" ? value.split(",") : value
     );
   };
@@ -146,7 +146,7 @@ function Filters() {
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={sex}
+          value={filterGender}
           onChange={handleChangeSex}
           input={<OutlinedInput label="Gender" />}
           MenuProps={MenuProps}
@@ -199,7 +199,7 @@ function Filters() {
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
-          value={status}
+          value={filterStatus}
           onChange={handleChangeStatus}
           input={<OutlinedInput label="Name" />}
           MenuProps={MenuProps}
