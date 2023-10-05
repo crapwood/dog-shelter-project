@@ -20,6 +20,7 @@ import {
   statusFilterOptions,
   sizeFilterOptions
 } from "@/constants/constants";
+import { useGlobalStore } from "@/store/global-items.store";
 
 const MenuProps = {
   PaperProps: {
@@ -31,6 +32,7 @@ const MenuProps = {
 };
 
 function Filters() {
+  const { filterName, setFilterName, setShouldFilter } = useGlobalStore();
   const [name, setName] = React.useState("");
   const [breed, setBreed] = React.useState("");
   const [sex, setSex] = React.useState("");
@@ -52,7 +54,7 @@ function Filters() {
     const {
       target: { value },
     } = event;
-    setName(
+    setFilterName(
         typeof value === "string" ? value.split(",") : value
     );
   };
@@ -104,6 +106,11 @@ function Filters() {
         typeof value === "string" ? value.split(",") : value
     );
   };
+
+  console.log(filterName)
+  function handleFilterButton(){
+    setShouldFilter(true);
+  }
 
   return (
     <Box
@@ -168,7 +175,7 @@ function Filters() {
           ))}
         </Select>
       </FormControl>
-      <TextField id="standard-basic" label="מס. דיסקיט" variant="outlined" onChange={handleChangeDiskit}/>
+      <TextField id="standard-basic" label="מס. דיסקית" variant="outlined" onChange={handleChangeDiskit} sx={{marginRight: '8px'}}/>
       <TextField id="standard-basic" label="מס. שבב" variant="outlined" onChange={handleChangeChipNum}/>
       <FormControl sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-multiple-name-label">ביתן</InputLabel>
@@ -204,7 +211,7 @@ function Filters() {
           ))}
         </Select>
       </FormControl>
-      <Button variant="contained" sx={{ height: "56px", width: "200px" }}>
+      <Button variant="contained" sx={{ height: "56px", width: "200px" }} onClick={handleFilterButton}>
         <Typography variant="h6">סינון</Typography>
       </Button>
     </Box>

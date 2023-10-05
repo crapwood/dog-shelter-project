@@ -19,7 +19,7 @@ interface AnimalDetailsProps {
 }
 
 function AnimalDetails({ control, errors }: AnimalDetailsProps) {
-    console.log(errors)
+    console.log(control)
     return (
         <Box
             sx={{
@@ -40,6 +40,7 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
                         <TextField
                             {...field}
                             aria-labelledby="demo-textfield-label"
+                            value={field.value || ""}
                         />
                         <br/>
                     </>
@@ -88,6 +89,7 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
                             aria-labelledby="demo-textfield-label"
                             id="demo-multiple-name"
                             sx={{ width: '500px' }}
+                            value={field.value}
                         >
                             {sizeFilterOptions.map((name) => (
                                 <MenuItem key={name} value={name}>
@@ -158,7 +160,7 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
                     // rules={{ minLength: 15 }}
                     render={({ field }) => (
                         <Box sx={{display: 'flex', flexDirection: 'column', marginLeft: '24px'}}>
-                            <FormLabel id="demo-textfield-label">מס. דיסקיט</FormLabel>
+                            <FormLabel id="demo-textfield-label">מס. דיסקית</FormLabel>
                             <TextField
                                 {...field}
                                 sx={{

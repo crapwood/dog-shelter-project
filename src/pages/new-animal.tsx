@@ -93,32 +93,32 @@ function NewAnimal() {
                             <PersonDetails control={control} errors={errors}/>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon/>}
-                            aria-controls="panel2a-content"
-                            id="panel2a-header"
-                        >
-                            <Typography>טיפולים</Typography>
-                            <VaccinesIcon fontSize="small" sx={{marginLeft: '8px'}}/>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Treatments control={control} errors={errors}/>
-                        </AccordionDetails>
-                    </Accordion>
-                    <Accordion disabled={viewMode === VIEW_MODE.NEW_ANIMAL}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon/>}
-                            aria-controls="panel2a-content"
-                            id="panel2a-header"
-                        >
-                            <Typography>עזיבה</Typography>
-                            <CelebrationIcon fontSize="small" sx={{marginLeft: '8px'}}/>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                            <Typography variant="h5">TODO: </Typography>
-                        </AccordionDetails>
-                    </Accordion>
+                    {/*<Accordion>*/}
+                    {/*    <AccordionSummary*/}
+                    {/*        expandIcon={<ExpandMoreIcon/>}*/}
+                    {/*        aria-controls="panel2a-content"*/}
+                    {/*        id="panel2a-header"*/}
+                    {/*    >*/}
+                    {/*        <Typography>טיפולים</Typography>*/}
+                    {/*        <VaccinesIcon fontSize="small" sx={{marginLeft: '8px'}}/>*/}
+                    {/*    </AccordionSummary>*/}
+                    {/*    <AccordionDetails>*/}
+                    {/*        <Treatments control={control} errors={errors}/>*/}
+                    {/*    </AccordionDetails>*/}
+                    {/*</Accordion>*/}
+                    {/*<Accordion disabled={viewMode === VIEW_MODE.NEW_ANIMAL}>*/}
+                    {/*    <AccordionSummary*/}
+                    {/*        expandIcon={<ExpandMoreIcon/>}*/}
+                    {/*        aria-controls="panel2a-content"*/}
+                    {/*        id="panel2a-header"*/}
+                    {/*    >*/}
+                    {/*        <Typography>עזיבה</Typography>*/}
+                    {/*        <CelebrationIcon fontSize="small" sx={{marginLeft: '8px'}}/>*/}
+                    {/*    </AccordionSummary>*/}
+                    {/*    <AccordionDetails>*/}
+                    {/*        <Typography variant="h5">TODO: </Typography>*/}
+                    {/*    </AccordionDetails>*/}
+                    {/*</Accordion>*/}
                     <Box sx={{ display: "flex", justifyContent: "center", marginTop: '16px' }}>
                         <Button
                             type="submit"
