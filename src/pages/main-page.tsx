@@ -94,16 +94,26 @@ export default function MainPage() {
                 return (<EditButton setOpenSidepanel={setOpenSidepanel}/>)
             }
         },
-        { field: "id", headerName: "מס.", width: 70 },
-        { field: "name", headerName: "שם", width: 150 },
-        { field: "breed", headerName: "גזע", width: 150 },
+        { field: "id", headerName: "מס.", width: 70, renderCell: (params)=> {
+                return(<b>{params.value}</b>)
+            }  },
+        { field: "name", headerName: "שם", width: 150, renderCell: (params)=> {
+            return(<b>{params.value}</b>)
+            } },
+        { field: "breed", headerName: "גזע", width: 150, renderCell: (params)=> {
+                return(<b>{params.value}</b>)
+            }  },
         {
             field: "gender",
             headerName: "מין",
             // type: 'number',
-            width: 100,
+            width: 100, renderCell: (params)=> {
+                return(<b>{params.value}</b>)
+            }
         },
-        { field: "size", headerName: "גודל", width: 100 },
+        { field: "size", headerName: "גודל", width: 100, renderCell: (params)=> {
+                return(<b>{params.value}</b>)
+            }  },
         // {
         //     field: 'diskit',
         //     headerName: 'Diskit',
@@ -113,9 +123,15 @@ export default function MainPage() {
         //     // valueGetter: (params: GridValueGetterParams) =>
         //     //     `${params.row.name || ''} ${params.row.breed || ''}`,
         // },
-        { field: "diskit", headerName: "מס. דיסקית", width: 250 },
-        { field: "chipNum", headerName: "מס. שבב", width: 250 },
-        { field: "cabin", headerName: "ביתן", width: 180 },
+        { field: "diskit", headerName: "מס. דיסקית", width: 250, renderCell: (params)=> {
+                return(<b>{params.value}</b>)
+            }  },
+        { field: "chipNum", headerName: "מס. שבב", width: 250, renderCell: (params)=> {
+                return(<b>{params.value}</b>)
+            }  },
+        { field: "cabin", headerName: "ביתן", width: 180, renderCell: (params)=> {
+                return(<b>{params.value}</b>)
+            }  },
         {
             field: "status",
             headerName: "סטטוס",
