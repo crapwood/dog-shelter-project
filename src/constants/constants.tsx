@@ -50,7 +50,6 @@ export const columns: GridColDef[] = [
 ];
 
 export const cabinsFilterOptions = [
-    "--",
     "גוריה 1",
     "פנסיון",
     "גוריה 2",
@@ -95,7 +94,6 @@ export const cabinsFilterOptions = [
 ];
 
 export const breedFilterOptions = [
-    "--",
     "אירדייל טרייר",
     "אלסקן מלמוט",
     "בול טרייר",
@@ -108,12 +106,11 @@ export const breedFilterOptions = [
     "טרייר טיבטי",
 ];
 
-export const genderFilterOptions = ["--","זכר", "נקבה"];
+export const genderFilterOptions = ["זכר", "נקבה"];
 
-export const statusFilterOptions = ["--","נוכח", "עזב"];
+export const statusFilterOptions = ["נוכח", "עזב"];
 
 export const sizeFilterOptions = [
-    "--",
     "ננסי",
     "קטן",
     "בינוני",

@@ -1,9 +1,9 @@
 // @ts-nocheck
-import React from "react";
+import React, { useState } from "react";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import enGB from "date-fns/locale/en-GB";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { DateField } from "@mui/x-date-pickers/DateField";
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Controller } from "react-hook-form";
 import { FormLabel, TextField, Box } from "@mui/material";
 
@@ -13,6 +13,7 @@ interface PersonDetailsProps {
 }
 
 function PersonDetails({ control, errors }: PersonDetailsProps) {
+    const [openDatePicker, setOpenDatePicker] = useState(false)
   return (
     <>
       <Box
@@ -31,7 +32,12 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
           render={({ field }) => (
             <>
               <LocalizationProvider dateAdapter={AdapterDateFns} locale={enGB}>
-                <DateField label="תאריך מסירה" {...field} />
+                <DatePicker shouldCloseOnSelect={true} label="תאריך מסירה" {...field} slotProps={{
+                    field: { clearable: true  },
+                    // textField: {
+                    //     onClick: () => setOpenDatePicker(true),
+                    // }
+                }} sx={{ width: "300px" }}/>
               </LocalizationProvider>
               <br />
             </>

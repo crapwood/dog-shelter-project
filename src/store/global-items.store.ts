@@ -10,25 +10,41 @@ interface GlobalStore {
     setSelectedRowFromGrid: (selectedRowFromGrid: Record<string, string> | undefined) => void;
     filterName: string | undefined;
     setFilterName: (name: string ) => void;
-    shouldFilter: boolean;
-    setShouldFilter: (shouldFilter: boolean) => void;
+    filterBreed: string | undefined;
+    setFilterBreed: (breed: string ) => void;
     filterGender: string | undefined;
-    setFilterGender: (name: string ) => void;
+    setFilterGender: (gender: string ) => void;
+    filterSize: boolean;
+    setFilterSize: (filterSize: boolean) => void;
+    filterDiskit: string | undefined;
+    setFilterDiskit: (filterDiskit: string ) => void;
+    filterChipNum: string | undefined;
+    setFilterChipNum: (filterChipNum: string ) => void;
+    filterCabin: string | undefined;
+    setFilterCabin: (filterCabin: string ) => void;
     filterStatus: string | undefined;
-    setFilterStatus: (name: string ) => void;
+    setFilterStatus: (filterStatus: string ) => void;
 }
 
 export const useGlobalStore = create<GlobalStore>((set) => ({
     viewMode: undefined,
     setViewMode: (viewMode) => set(() => ({ viewMode })),
     selectedRowFromGrid: undefined,
-    setViewMode: (selectedRowFromGrid) => set(() => ({ selectedRowFromGrid })),
+    setSelectedRowFromGrid: (selectedRowFromGrid) => set(() => ({ selectedRowFromGrid })),
     filterName: "",
     setFilterName: (filterName) => set(()=> ({filterName})),
-    shouldFilter: false,
-    setShouldFilter: (shouldFilter => set(()=> ({shouldFilter}))),
+    filterBreed: "",
+    setFilterBreed: (filterBreed) => set(()=> ({filterBreed})),
     filterGender: "",
     setFilterGender: (filterGender) => set(()=> ({filterGender})),
+    filterSize: "",
+    setFilterSize: (filterSize) => set(()=> ({filterSize})),
+    filterDiskit: "",
+    setFilterDiskit: (filterDiskit) => set(()=> ({filterDiskit})),
+    filterChipNum: "",
+    setFilterChipNum: (filterChipNum) => set(()=> ({filterChipNum})),
+    filterCabin: "",
+    setFilterCabin: (filterCabin) => set(()=> ({filterCabin})),
     filterStatus: "",
     setFilterStatus: (filterStatus) => set(()=> ({filterStatus})),
     }));

@@ -18,6 +18,7 @@ import Treatments from "@/components/forms/components/treatments";
 function NewAnimal() {
     const [expand, setExpand] = React.useState<string | true>(true);
     const {viewMode, setViewMode} = useGlobalStore();
+    console.log(viewMode, 'viewMode')
     const { push } = useRouter();
     const { handleSubmit, control, reset, formState:{errors} } = useForm({
         defaultValues: {

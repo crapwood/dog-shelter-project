@@ -69,8 +69,6 @@ function Navbar(props: Props) {
       push(`${linkNavItems[item as NavItems]}`)
     }
     push(`${linkNavItems[item as NavItems]}`)
-
-
   }
 
   const drawer = (

@@ -19,7 +19,6 @@ interface AnimalDetailsProps {
 }
 
 function AnimalDetails({ control, errors }: AnimalDetailsProps) {
-    console.log(control)
     return (
         <Box
             sx={{
