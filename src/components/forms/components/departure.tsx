@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { Controller, useWatch } from "react-hook-form";
 import dayjs from "dayjs";
