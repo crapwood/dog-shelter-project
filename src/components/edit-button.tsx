@@ -8,10 +8,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import IconButton from "@mui/material/IconButton";
 
 interface EditButtonProps {
-    setOpenSidepanel: ()=> void;
+    handleEditButtonClick: ()=> void;
 }
 
-export default function EditButton({setOpenSidepanel}:EditButtonProps) {
+export default function EditButton({handleEditButtonClick}:EditButtonProps) {
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
     const open = Boolean(anchorEl);
     const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -21,8 +21,8 @@ export default function EditButton({setOpenSidepanel}:EditButtonProps) {
         setAnchorEl(null);
     };
 
-    function handleEditButtonClick(){
-        setOpenSidepanel(true);
+    function editButtonClick(){
+        handleEditButtonClick();
         handleClose();
     }
 
@@ -51,7 +51,7 @@ export default function EditButton({setOpenSidepanel}:EditButtonProps) {
                     horizontal: 'left',
                 }}
             >
-                <MenuItem onClick={handleEditButtonClick}>עריכה</MenuItem>
+                <MenuItem onClick={editButtonClick}>עריכה</MenuItem>
             </Menu>
         </div>
     );

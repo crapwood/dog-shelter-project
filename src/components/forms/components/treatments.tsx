@@ -2,8 +2,7 @@
 import React from "react";
 import { FormLabel, TextField, Box, Typography } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import enGB from "date-fns";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { Controller } from "react-hook-form";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
@@ -55,7 +54,7 @@ function Treatments({ control, errors }: TreatmentsProps) {
               // rules={{ required: true }}
               render={({ field }) => (
                 <Box sx={{ marginLeft: "8px" }}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={enGB}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field} slotProps={{
                             field: { clearable: true  },
 
@@ -98,7 +97,7 @@ function Treatments({ control, errors }: TreatmentsProps) {
               // rules={{ required: true }}
               render={({ field }) => (
                 <Box sx={{ marginLeft: "8px" }}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={enGB}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field} slotProps={{
                             field: { clearable: true  },
 
@@ -141,7 +140,7 @@ function Treatments({ control, errors }: TreatmentsProps) {
               // rules={{ required: true }}
               render={({ field }) => (
                 <Box sx={{ marginLeft: "8px" }}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={enGB}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field} slotProps={{
                             field: { clearable: true  },
 
@@ -184,7 +183,7 @@ function Treatments({ control, errors }: TreatmentsProps) {
               // rules={{ required: true }}
               render={({ field }) => (
                 <Box sx={{ marginLeft: "8px" }}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns} locale={enGB}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
                         <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field} slotProps={{
                             field: { clearable: true  },
 

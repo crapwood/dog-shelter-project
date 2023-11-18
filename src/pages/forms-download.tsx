@@ -2,12 +2,13 @@
 import React from 'react';
 import Navbar from "@/components/navbar";
 import Grid from "@mui/material/Grid";
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton, Typography } from "@mui/material";
 import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
+import '../styles/main-page.scss';
 
 function FormsDownload() {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} className="page-container">
             <Grid container spacing={2} direction="row"
                   justifyContent="center"
                   alignItems="center">
@@ -15,24 +16,45 @@ function FormsDownload() {
                     <Navbar/>
                 </Grid>
                 <Grid item xs={12}>
-                    <div style={{ height: '48px', backgroundColor: 'transparent', width: '100%' }} />
+                    <div style={{ height: '48px', backgroundColor: 'transparent', width: '100%' }}/>
                 </Grid>
                 <Grid item xs={12}>
-                    <Box sx={{display: 'flex', justifyContent: 'center',height: '100px'}}>
+                    <Box sx={{ display: 'flex', justifyContent: 'center', height: '100px' }}>
                         <h1>טפסים להדפסה</h1>
                     </Box>
                 </Grid>
-                <Grid item xs={2}>
-                        <Button href={'/adoption-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס למאמצים</Button>
+                <Grid item xs={1}>
+                    <Box sx={{display: 'flex', flexDirection: 'column',alignItems: 'center',}}>
+                        <IconButton href={'/adoption-form.pdf'} target="_blank" sx={{ height: '140px', borderRadius: 0 }}>
+                            <Box component="img" sx={{ height: '140px', fontSize: '24px' }} src="doc-svg-icon.svg"/>
+                        </IconButton>
+                        <Typography variant="subtitle1">טופס למאמצים</Typography>
+                    </Box>
+                    {/*<Button href={'/adoption-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס למאמצים</Button>*/}
                 </Grid>
-                <Grid item xs={2}>
-                    <Button href={'/ikurim-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס תכנון עיקורים</Button>
+                <Grid item xs={1}>
+                    <Box sx={{display: 'flex', flexDirection: 'column',alignItems: 'center',}}>
+                        <IconButton href={'/ikurim-form.pdf'} target="_blank" sx={{ height: '140px', borderRadius: 0 }}>
+                            <Box component="img" sx={{ height: '140px', fontSize: '24px' }} src="doc-svg-icon.svg"/>
+                        </IconButton>
+                        <Typography variant="subtitle1">טופס תכנון עיקורים</Typography>
+                    </Box>
                 </Grid>
-                <Grid item xs={2}>
-                    <Button href={'/registration-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס קליטה</Button>
+                <Grid item xs={1}>
+                    <Box sx={{display: 'flex', flexDirection: 'column',alignItems: 'center',}}>
+                        <IconButton href={'/registration-form.pdf'} target="_blank" sx={{ height: '140px', borderRadius: 0 }}>
+                            <Box component="img" sx={{ height: '140px', fontSize: '24px' }} src="doc-svg-icon.svg"/>
+                        </IconButton>
+                        <Typography variant="subtitle1">טופס קליטה</Typography>
+                    </Box>
                 </Grid>
-                <Grid item xs={2}>
-                    <Button href={'/ikurim-assurance-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">התחייבות לעיקור</Button>
+                <Grid item xs={1}>
+                    <Box sx={{display: 'flex', flexDirection: 'column',alignItems: 'center',}}>
+                        <IconButton href={'/ikurim-assurance-form.pdf'} target="_blank" sx={{ height: '140px', borderRadius: 0 }}>
+                            <Box component="img" sx={{ height: '140px', fontSize: '24px' }} src="doc-svg-icon.svg"/>
+                        </IconButton>
+                        <Typography variant="subtitle1">התחייבות לעיקור</Typography>
+                    </Box>
                 </Grid>
             </Grid>
         </Box>

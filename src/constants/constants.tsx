@@ -3,13 +3,14 @@ import { GridColDef } from "@mui/x-data-grid";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import EditButton from "@/components/edit-button";
+import React from "react";
 
 export const ITEM_HEIGHT = 48;
 export const ITEM_PADDING_TOP = 8;
 
 export const columns: GridColDef[] = [
     {
-        field: 'editBtn', headerName: "", disableColumnMenu: true, width: 100,renderCell: (params) => {
+        field: 'editBtn', headerName: "", disableColumnMenu: true, width: 100, renderCell: (params) => {
             return (<EditButton/>)
         }
     },
@@ -109,6 +110,11 @@ export const breedFilterOptions = [
 export const genderFilterOptions = ["זכר", "נקבה"];
 
 export const statusFilterOptions = ["נוכח", "עזב"];
+
+export const statusFilterOptionsIcons = {
+    "נוכח": <CheckCircleOutlineIcon color="success" sx={{marginRight: '8px'}}/>,
+    "עזב": <HighlightOffIcon color="error" sx={{marginRight: '8px'}}/>
+}
 
 export const sizeFilterOptions = [
     "ננסי",

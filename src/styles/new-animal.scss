@@ -1,12 +1,8 @@
-.sign-in-container{
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.new-animal-page-container {
   background: url("/bg1.svg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  min-height:calc(100vh + 450px);
 }

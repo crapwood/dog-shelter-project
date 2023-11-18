@@ -14,11 +14,12 @@ import VaccinesIcon from '@mui/icons-material/Vaccines';
 import CelebrationIcon from '@mui/icons-material/Celebration';
 import { VIEW_MODE } from "@/enums/enums";
 import Treatments from "@/components/forms/components/treatments";
+import '../styles/new-animal.scss';
 
 function NewAnimal() {
     const [expand, setExpand] = React.useState<string | true>(true);
     const {viewMode, setViewMode} = useGlobalStore();
-    console.log(viewMode, 'viewMode')
+
     const { push } = useRouter();
     const { handleSubmit, control, reset, formState:{errors} } = useForm({
         defaultValues: {
@@ -52,7 +53,7 @@ function NewAnimal() {
         };
 
     return (
-        <Box>
+        <Box className="new-animal-page-container">
             <Navbar/>
             <Box
                 sx={{
@@ -64,10 +65,14 @@ function NewAnimal() {
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <Box sx={{ display: "flex", justifyContent: "center" }}>
-                        <Typography variant="h4">קליטת בעל חיים חדש</Typography>
+                        <h1>קליטת בעל חיים חדש</h1>
                     </Box>
 
-                    <Accordion expanded={expand} onChange={handleExpand('panel1')}>
+                    <Accordion expanded={expand} onChange={handleExpand('panel1')} sx={{
+                        '&:before': {
+                            display: 'none',
+                        }, borderRadius: 2
+                    }}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon/>}
                             aria-controls="panel1a-content"
@@ -81,7 +86,11 @@ function NewAnimal() {
                             <AnimalDetails control={control} errors={errors}/>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion>
+                    <Accordion sx={{
+                        '&:before': {
+                            display: 'none',
+                        }, borderRadius: 2
+                    }}>
                         <AccordionSummary
                             expandIcon={<ExpandMoreIcon/>}
                             aria-controls="panel2a-content"

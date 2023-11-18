@@ -1,20 +1,18 @@
-// @ts-nocheck
-import React, { useState } from "react";
+import React from 'react';
+import { Controller, useWatch } from "react-hook-form";
+import dayjs from "dayjs";
+import { Box, FormLabel, TextField } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import dayjs from 'dayjs';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { Controller } from "react-hook-form";
-import { FormLabel, TextField, Box } from "@mui/material";
-import { useWatch } from "react-hook-form"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 
-interface PersonDetailsProps {
+interface DepartureProps {
     control: any;
     errors: any;
 }
 
-function PersonDetails({ control, errors }: PersonDetailsProps) {
-    const dateVal = useWatch({ control, name: "arriveCause" })
+function Departure({ control, errors }: DepartureProps) {
+    const dateVal = useWatch({ control, name: "leaveCause" })
     const [value, setValue] = React.useState(dayjs(dateVal))
     return (
         <>
@@ -28,7 +26,7 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                 }}
             >
                 <Controller
-                    name="arriveCause"
+                    name="leaveCause"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (
@@ -139,4 +137,4 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
     );
 }
 
-export default PersonDetails;
+export default Departure;

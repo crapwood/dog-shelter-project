@@ -18,9 +18,10 @@ import {
     ITEM_HEIGHT,
     ITEM_PADDING_TOP,
     statusFilterOptions,
-    sizeFilterOptions
+    sizeFilterOptions, statusFilterOptionsIcons
 } from "@/constants/constants";
 import { useGlobalStore } from "@/store/global-items.store";
+import FilterAltTwoToneIcon from '@mui/icons-material/FilterAltTwoTone';
 
 const MenuProps = {
     PaperProps: {
@@ -52,14 +53,6 @@ function Filters({ handleFilterButton }: FiltersProps) {
         filterStatus,
         setFilterStatus
     } = useGlobalStore();
-    const [name, setName] = React.useState("");
-    const [breed, setBreed] = React.useState("");
-    const [sex, setSex] = React.useState("");
-    const [diskit, setDiskit] = React.useState("");
-    const [chipNum, setChipNum] = React.useState("");
-    const [bitan, setBitan] = React.useState("");
-    const [status, setStatus] = React.useState("");
-    const [size, setSize] = React.useState("");
 
     const handleChangeBreed = (event) => {
         const {
@@ -134,9 +127,10 @@ function Filters({ handleFilterButton }: FiltersProps) {
                 justifyContent: "center",
                 marginTop: "60px",
                 padding: "24px",
+                flexDirection: "row-reverse",
             }}
         >
-            <TextField id="standard-basic" label="שם" variant="outlined" onChange={handleChangeName}/>
+            <TextField id="standard-basic" label="שם" variant="outlined" onChange={handleChangeName} sx={{ margin: '8px' }}/>
             <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">גזע</InputLabel>
                 <Select
@@ -199,8 +193,8 @@ function Filters({ handleFilterButton }: FiltersProps) {
                 </Select>
             </FormControl>
             <TextField id="standard-basic" label="מס. דיסקית" variant="outlined" onChange={handleChangeDiskit}
-                       sx={{ marginRight: '8px' }}/>
-            <TextField id="standard-basic" label="מס. שבב" variant="outlined" onChange={handleChangeChipNum}/>
+                       sx={{ margin: '8px' }}/>
+            <TextField id="standard-basic" label="מס. שבב" variant="outlined" onChange={handleChangeChipNum} sx={{ margin: '8px' }}/>
             <FormControl sx={{ m: 1, width: 300 }}>
                 <InputLabel id="demo-multiple-name-label">ביתן</InputLabel>
                 <Select
@@ -236,13 +230,18 @@ function Filters({ handleFilterButton }: FiltersProps) {
                     </MenuItem>
                     {statusFilterOptions.map((name) => (
                         <MenuItem key={name} value={name}>
-                            {name}
+                            <Box sx={{display: 'flex', alignItems: 'center'}}>
+                                {statusFilterOptionsIcons[name]}{name}
+                            </Box>
+
                         </MenuItem>
                     ))}
                 </Select>
             </FormControl>
-            <Button variant="contained" sx={{ height: "56px", width: "200px" }} onClick={handleFilterButton}>
+            <Button variant="contained" sx={{ height: "56px", width: "200px", alignItems: 'center' }} onClick={handleFilterButton}>
+                <FilterAltTwoToneIcon sx={{marginRight: '8px'}}/>
                 <Typography variant="h6">סינון</Typography>
+
             </Button>
         </Box>
     );
