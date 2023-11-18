@@ -33,7 +33,7 @@ interface Props {
      * You won't need it on your project.
      */
     window?: () => Window;
-    numOfDogs: number;
+    numOfDogs?: number;
 }
 
 const drawerWidth = 240;
