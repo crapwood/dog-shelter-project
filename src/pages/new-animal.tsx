@@ -10,10 +10,6 @@ import AnimalDetails from "@/components/forms/components/animal-details";
 import PersonDetails from "@/components/forms/components/person-details";
 import PetsIcon from '@mui/icons-material/Pets';
 import PersonIcon from '@mui/icons-material/Person';
-import VaccinesIcon from '@mui/icons-material/Vaccines';
-import CelebrationIcon from '@mui/icons-material/Celebration';
-import { VIEW_MODE } from "@/enums/enums";
-import Treatments from "@/components/forms/components/treatments";
 import '../styles/new-animal.scss';
 
 function NewAnimal() {
@@ -103,32 +99,6 @@ function NewAnimal() {
                             <PersonDetails control={control} errors={errors}/>
                         </AccordionDetails>
                     </Accordion>
-                    {/*<Accordion>*/}
-                    {/*    <AccordionSummary*/}
-                    {/*        expandIcon={<ExpandMoreIcon/>}*/}
-                    {/*        aria-controls="panel2a-content"*/}
-                    {/*        id="panel2a-header"*/}
-                    {/*    >*/}
-                    {/*        <Typography>טיפולים</Typography>*/}
-                    {/*        <VaccinesIcon fontSize="small" sx={{marginLeft: '8px'}}/>*/}
-                    {/*    </AccordionSummary>*/}
-                    {/*    <AccordionDetails>*/}
-                    {/*        <Treatments control={control} errors={errors}/>*/}
-                    {/*    </AccordionDetails>*/}
-                    {/*</Accordion>*/}
-                    {/*<Accordion disabled={viewMode === VIEW_MODE.NEW_ANIMAL}>*/}
-                    {/*    <AccordionSummary*/}
-                    {/*        expandIcon={<ExpandMoreIcon/>}*/}
-                    {/*        aria-controls="panel2a-content"*/}
-                    {/*        id="panel2a-header"*/}
-                    {/*    >*/}
-                    {/*        <Typography>עזיבה</Typography>*/}
-                    {/*        <CelebrationIcon fontSize="small" sx={{marginLeft: '8px'}}/>*/}
-                    {/*    </AccordionSummary>*/}
-                    {/*    <AccordionDetails>*/}
-                    {/*        <Typography variant="h5">TODO: </Typography>*/}
-                    {/*    </AccordionDetails>*/}
-                    {/*</Accordion>*/}
                     <Box sx={{ display: "flex", justifyContent: "center", marginTop: '16px' }}>
                         <Button
                             type="submit"

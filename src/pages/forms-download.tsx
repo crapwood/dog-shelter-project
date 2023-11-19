@@ -3,7 +3,6 @@ import React from 'react';
 import Navbar from "@/components/navbar";
 import Grid from "@mui/material/Grid";
 import { Box, Button, IconButton, Typography } from "@mui/material";
-import FileDownloadRoundedIcon from '@mui/icons-material/FileDownloadRounded';
 import '../styles/main-page.scss';
 
 function FormsDownload() {
@@ -30,7 +29,6 @@ function FormsDownload() {
                         </IconButton>
                         <Typography variant="subtitle1">טופס למאמצים</Typography>
                     </Box>
-                    {/*<Button href={'/adoption-form.pdf'} variant="contained" sx={{height: '140px', fontSize: '24px'}} endIcon={<FileDownloadRoundedIcon />} fullWidth={true} target="_blank">טופס למאמצים</Button>*/}
                 </Grid>
                 <Grid item xs={1}>
                     <Box sx={{display: 'flex', flexDirection: 'column',alignItems: 'center',}}>

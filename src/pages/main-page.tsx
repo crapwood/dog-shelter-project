@@ -50,7 +50,6 @@ export default function MainPage() {
     const [selectedRowData, setSelectedRowData] = useState([]);
     const [selectedRow, setSelectedRow] = useState<>({});
     const [openSidepanel, setOpenSidepanel] = useState(false)
-    const [numOfDogs, setNumOfDogs] = React.useState(0)
 
     async function fetchFilteredData() {
         const req = await fetch(`/api/db-query-filter`, {
@@ -100,16 +99,6 @@ export default function MainPage() {
 
         fetchData();
     }, []);
-
-    useEffect(()=>{
-        async function fetchData() {
-            const req = await fetch(`/api/db-query-vaccines`);
-            const response = await req.json();
-            setNumOfDogs(response.length)
-        }
-
-        fetchData();
-    }, [])
 
     function handleEditButtonClick() {
         setOpenSidepanel(true);
@@ -197,7 +186,7 @@ export default function MainPage() {
         <Box sx={{ flexGrow: 1 }} className="page-container">
             <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Navbar numOfDogs={numOfDogs}/>
+                    <Navbar/>
                 </Grid>
                 <Grid item xs={12}>
                     <Filters handleFilterButton={handleFilterButton}/>

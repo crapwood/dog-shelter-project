@@ -11,8 +11,7 @@ export default async function handler(req, res) {
                     where: {
                         arriveCause:
                             {
-                                lte: new Date(plusTenDaysDate),
-                                gte: new Date(today)
+                                lte: new Date(plusTenDaysDate)
                             }
                     }
                 })

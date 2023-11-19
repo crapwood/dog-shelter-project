@@ -26,6 +26,7 @@ import { useRouter } from "next/navigation";
 import VaccinesIcon from "@mui/icons-material/Vaccines";
 import { Badge } from "@mui/material";
 import PetsIcon from '@mui/icons-material/Pets';
+import { useEffect } from "react";
 
 interface Props {
     /**
@@ -33,7 +34,6 @@ interface Props {
      * You won't need it on your project.
      */
     window?: () => Window;
-    numOfDogs?: number;
 }
 
 const drawerWidth = 240;
@@ -57,8 +57,19 @@ const linkNavItems: Record<NavItems, string> = {
 function Navbar(props: Props) {
     const { push } = useRouter();
     const { viewMode, setViewMode } = useGlobalStore();
-    const { window, numOfDogs } = props;
+    const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
+    const [numOfDogs, setNumOfDogs] = React.useState(0)
+
+    useEffect(()=>{
+        async function fetchData() {
+            const req = await fetch(`/api/db-query-vaccines`);
+            const response = await req.json();
+            setNumOfDogs(response.length)
+        }
+
+        fetchData();
+    }, [])
 
     const linkNavIcons: Record<NavItems, React.ReactNode> = {
         [NavItems.HOME]: <HomeRoundedIcon/>,

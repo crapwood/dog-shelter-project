@@ -2,10 +2,11 @@ import React from 'react';
 import Grid from "@mui/material/Grid";
 import Navbar from "@/components/navbar";
 import { Box } from "@mui/material";
+import '../styles/new-animal.scss';
 
 function Vaccines() {
     return (
-        <Box sx={{ flexGrow: 1 }}>
+        <Box sx={{ flexGrow: 1 }} className="page-container">
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Navbar/>
