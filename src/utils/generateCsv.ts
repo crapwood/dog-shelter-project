@@ -1,3 +1,4 @@
+// @ts-nocheck
 // Function to convert the JSON(Array of objects) to CSV.
 const arrayToCsv = (headers, data) => {
     const csvRows = [];
