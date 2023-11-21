@@ -160,7 +160,7 @@ function Reports() {
                                     </Select>
                                 </FormControl>
                                 <FormControl sx={{ m: 1, width: 300 }}>
-                                    <InputLabel id="demo-multiple-name-label">סוג דוק</InputLabel>
+                                    <InputLabel id="demo-multiple-name-label">סוג דו׳׳ח</InputLabel>
                                     <Select
                                         labelId="demo-multiple-name-label"
                                         id="demo-multiple-name"
