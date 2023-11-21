@@ -13,11 +13,12 @@ import PersonIcon from '@mui/icons-material/Person';
 import '../styles/new-animal.scss';
 
 function NewAnimal() {
-    const [expand, setExpand] = React.useState<string | true>(true);
-    const {viewMode, setViewMode} = useGlobalStore();
+    const [expandAnimalDetails, setExpandAnimalDetails] = React.useState<string | true>(true);
+    const [expandPersonDetails, setExpandPersonDetails] = React.useState<string | true>(true);
+    const { viewMode, setViewMode } = useGlobalStore();
 
     const { push } = useRouter();
-    const { handleSubmit, control, reset, formState:{errors} } = useForm({
+    const { handleSubmit, control, reset, formState: { errors } } = useForm({
         defaultValues: {
             name: "",
             chipNum: "",
@@ -34,18 +35,23 @@ function NewAnimal() {
         const formData = { ...data, diskit: Number(data.diskit) };
         console.log(formData)
         await fetch("/api/db-queries", {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
         });
         await push("/main-page");
     };
-    const handleExpand =
+    const handleExpandAnimalDetails =
         (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
-            setExpand(isExpanded ? panel : false);
+            setExpandAnimalDetails(isExpanded ? panel : false);
+        };
+
+    const handleExpandPersonDetails =
+        (panel: string) => (event: React.SyntheticEvent, isExpanded: boolean) => {
+            setExpandPersonDetails(isExpanded ? panel : false);
         };
 
     return (
@@ -64,7 +70,7 @@ function NewAnimal() {
                         <h1>קליטת בעל חיים חדש</h1>
                     </Box>
 
-                    <Accordion expanded={expand} onChange={handleExpand('panel1')} sx={{
+                    <Accordion expanded={expandAnimalDetails} onChange={handleExpandAnimalDetails('panel1')} sx={{
                         '&:before': {
                             display: 'none',
                         }, borderRadius: 2
@@ -76,13 +82,13 @@ function NewAnimal() {
                         >
 
                             <Typography>פרטי בעל חיים</Typography>
-                            <PetsIcon fontSize="small" sx={{marginLeft: '8px'}}/>
+                            <PetsIcon fontSize="small" sx={{ marginLeft: '8px' }}/>
                         </AccordionSummary>
                         <AccordionDetails>
                             <AnimalDetails control={control} errors={errors}/>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion sx={{
+                    <Accordion expanded={expandPersonDetails} onChange={handleExpandPersonDetails('panel2')} sx={{
                         '&:before': {
                             display: 'none',
                         }, borderRadius: 2
@@ -93,7 +99,7 @@ function NewAnimal() {
                             id="panel2a-header"
                         >
                             <Typography>פרטי מסירה</Typography>
-                            <PersonIcon fontSize="small" sx={{marginLeft: '8px'}}/>
+                            <PersonIcon fontSize="small" sx={{ marginLeft: '8px' }}/>
                         </AccordionSummary>
                         <AccordionDetails>
                             <PersonDetails control={control} errors={errors}/>
