@@ -9,7 +9,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { Controller, useWatch } from "react-hook-form";
 import dayjs from 'dayjs';
 import { useForm } from "react-hook-form";
-import '../styles/new-animal.scss';
+import '../styles/main-page.scss';
 import { generateCSV } from "@/utils/generateCsv";
 import { CSVLink, CSVDownload } from "react-csv";
 import { ITEM_HEIGHT, ITEM_PADDING_TOP, statusFilterOptions, statusFilterOptionsIcons } from "@/constants/constants";
