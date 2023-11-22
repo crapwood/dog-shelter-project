@@ -12,7 +12,13 @@ import { useForm } from "react-hook-form";
 import '../styles/main-page.scss';
 import { generateCSV } from "@/utils/generateCsv";
 import { CSVLink, CSVDownload } from "react-csv";
-import { ITEM_HEIGHT, ITEM_PADDING_TOP, statusFilterOptions, statusFilterOptionsIcons } from "@/constants/constants";
+import {
+    docTypeFilterOptions,
+    ITEM_HEIGHT,
+    ITEM_PADDING_TOP, stateNamesFilterOptions,
+    statusFilterOptions,
+    statusFilterOptionsIcons
+} from "@/constants/constants";
 
 function Reports() {
     const dateVal = new Date().toISOString();
@@ -109,6 +115,7 @@ function Reports() {
                                                             slotProps={{
                                                                 field: { clearable: true },
                                                             }} sx={{ width: "300px", margin: "0 8px" }}
+                                                            format="DD/MM/YYYY"
                                                             value={fromDate}
                                                             onChange={(newValue) => setFromDate(newValue)}/>
                                             </LocalizationProvider>
@@ -127,6 +134,7 @@ function Reports() {
                                                             slotProps={{
                                                                 field: { clearable: true },
                                                             }} sx={{ width: "300px", margin: "0 8px" }}
+                                                            format="DD/MM/YYYY"
                                                             value={toDate}
                                                             onChange={(newValue) => setToDate(newValue)}/>
                                             </LocalizationProvider>
@@ -137,7 +145,7 @@ function Reports() {
                             </Box>
                             <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                 <FormControl sx={{ m: 1, width: 300 }}>
-                                    <InputLabel id="demo-multiple-name-label">רשויות</InputLabel>
+                                    <InputLabel id="demo-multiple-name-label">סוג רשויות</InputLabel>
                                     <Select
                                         labelId="demo-multiple-name-label"
                                         id="demo-multiple-name"
@@ -149,7 +157,7 @@ function Reports() {
                                         <MenuItem value="">
                                             <em>--</em>
                                         </MenuItem>
-                                        {statusFilterOptions.map((name) => (
+                                        {stateNamesFilterOptions.map((name) => (
                                             <MenuItem key={name} value={name}>
                                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                     {statusFilterOptionsIcons[name]}{name}
@@ -172,7 +180,7 @@ function Reports() {
                                         <MenuItem value="">
                                             <em>--</em>
                                         </MenuItem>
-                                        {statusFilterOptions.map((name) => (
+                                        {docTypeFilterOptions.map((name) => (
                                             <MenuItem key={name} value={name}>
                                                 <Box sx={{ display: 'flex', alignItems: 'center' }}>
                                                     {statusFilterOptionsIcons[name]}{name}

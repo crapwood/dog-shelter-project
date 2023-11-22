@@ -40,6 +40,7 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                                     //     onClick: () => setOpenDatePicker(true),
                                     // }
                                 }} sx={{ width: "300px" }}
+                                            format="DD/MM/YYYY"
                                             value={value}
                                             onChange={(newValue) => setValue(newValue)}/>
                             </LocalizationProvider>

@@ -58,7 +58,8 @@ function Treatments({ control, errors }: TreatmentsProps) {
                         <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field} slotProps={{
                             field: { clearable: true  },
 
-                        }} sx={{ width: "300px" }}/>
+                        }} sx={{ width: "300px" }}
+                                    format="DD/MM/YYYY"/>
                     </LocalizationProvider>
                 </Box>
               )}
@@ -101,7 +102,8 @@ function Treatments({ control, errors }: TreatmentsProps) {
                         <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field} slotProps={{
                             field: { clearable: true  },
 
-                        }} sx={{ width: "300px" }}/>
+                        }} sx={{ width: "300px" }}
+                                    format="DD/MM/YYYY"/>
                     </LocalizationProvider>
                 </Box>
               )}
@@ -144,7 +146,8 @@ function Treatments({ control, errors }: TreatmentsProps) {
                         <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field} slotProps={{
                             field: { clearable: true  },
 
-                        }} sx={{ width: "300px" }}/>
+                        }} sx={{ width: "300px" }}
+                                    format="DD/MM/YYYY"/>
                     </LocalizationProvider>
                 </Box>
               )}
@@ -187,7 +190,8 @@ function Treatments({ control, errors }: TreatmentsProps) {
                         <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field} slotProps={{
                             field: { clearable: true  },
 
-                        }} sx={{ width: "300px" }}/>
+                        }} sx={{ width: "300px" }}
+                                    format="DD/MM/YYYY"/>
                     </LocalizationProvider>
                 </Box>
               )}

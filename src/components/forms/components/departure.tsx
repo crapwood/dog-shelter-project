@@ -39,6 +39,7 @@ function Departure({ control, errors }: DepartureProps) {
                                     //     onClick: () => setOpenDatePicker(true),
                                     // }
                                 }} sx={{ width: "300px" }}
+                                            format="DD/MM/YYYY"
                                             value={value}
                                             onChange={(newValue) => setValue(newValue)}/>
                             </LocalizationProvider>
