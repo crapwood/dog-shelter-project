@@ -27,7 +27,6 @@ function Reports() {
     const [data, setData] = useState([]);
     const [docType, setDocType] = useState('');
     const [stateName, setStateName] = useState('');
-
     const { handleSubmit, control, reset, formState: { errors } } = useForm({
         defaultValues: {
             reportToDate: toDate,
