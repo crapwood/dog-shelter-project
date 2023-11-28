@@ -39,7 +39,7 @@ model Adopters {
   name       String?    @db.VarChar(45)
   familyName String?    @db.VarChar(45)
   address    String?    @db.VarChar(45)
-  cityCode   BigInt?
+  cityCode   Int?
   phone      Int?
   city       City?      @relation(fields: [cityCode], references: [code])
   Adoption   Adoption[]
@@ -65,7 +65,7 @@ model Adoption {
 model City {
   name      String     @db.VarChar(45)
   stateName String?    @db.VarChar(45)
-  code      BigInt     @id
+  code      Int        @id
   state     State?     @relation(fields: [stateName], references: [name])
   Delivers  Delivers[]
   Adopters  Adopters[]
@@ -79,7 +79,7 @@ model Delivers {
   familyName String?    @db.VarChar(45)
   address    String?    @db.VarChar(45)
   phone      Int?
-  cityCode   BigInt?
+  cityCode   Int?
   city       City?      @relation(fields: [cityCode], references: [code])
   Delivery   Delivery[]
 
@@ -104,7 +104,7 @@ model Delivery {
 model dogs {
   id         String      @id @default(uuid())
   chipNum    String?
-  diskit     BigInt?
+  diskit     Int?
   name       String?     @db.VarChar(45)
   status     String?     @db.VarChar(45)
   cabin      String?     @db.VarChar(45)
