@@ -9,7 +9,7 @@ export default async function handler(req, res) {
             const plusTenDaysDate = new Date(plusTenDays.setDate(plusTenDays.getDate() + 10)).toISOString().split('T')[0];
             const data = await prisma.dogs.findMany({
                     where: {
-                        arriveCause:
+                        arriveDate:
                             {
                                 lte: new Date(plusTenDaysDate)
                             }
@@ -22,3 +22,4 @@ export default async function handler(req, res) {
         }
     }
 }
+

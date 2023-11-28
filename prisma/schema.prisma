@@ -8,116 +8,133 @@ datasource db {
   relationMode = "prisma"
 }
 
-model actualcare {
-  careID   Int       @id
-  uniqNum  Int?
-  careDate DateTime? @db.Date
-  workerID Int?
+model Treatment {
+  id            String    @id @default(uuid())
+  datePerformed DateTime? @db.Date
+  workerId      String?
+  dogId         String?
+  name          String?   @db.VarChar(45)
+  worker        Worker?   @relation(fields: [workerId], references: [id])
+  Dog           dogs?     @relation(fields: [dogId], references: [id])
 
-  @@index([uniqNum], map: "uniqNum2_idx")
+  @@index([workerId])
+  @@index([dogId])
 }
 
-model actualvacc {
-  actualvaccId Int       @id
-  uniqNum      Int?
-  vaccName     String?   @db.VarChar(45)
-  vaccDate     DateTime? @db.Date
-  workerID     Int?
+model Vaccine {
+  id               Int       @id
+  name             String?   @db.VarChar(45)
+  dateAdministered DateTime? @db.Date
+  workerId         String?
+  dogId            String?
+  worker           Worker?   @relation(fields: [workerId], references: [id])
+  dog              dogs?     @relation(fields: [dogId], references: [id])
 
-  @@index([uniqNum], map: "uniqNum1_idx")
-  @@ignore
+  @@index([workerId])
+  @@index([dogId])
 }
 
-model adopters {
-  adopterID  Int     @id
-  name       String? @db.VarChar(45)
-  familyname String? @db.VarChar(45)
-  address    String? @db.VarChar(45)
-  cityCode   Int?
+model Adopters {
+  id         String     @id @default(uuid())
+  name       String?    @db.VarChar(45)
+  familyName String?    @db.VarChar(45)
+  address    String?    @db.VarChar(45)
+  cityCode   BigInt?
   phone      Int?
+  city       City?      @relation(fields: [cityCode], references: [code])
+  Adoption   Adoption[]
+
+  @@index([cityCode])
 }
 
-model adoption {
-  adopterID    Int       @id
-  uniqNum      Int
+model Adoption {
+  id           String    @id @default(uuid())
+  dogsId       String?   @unique
   adoptionDate DateTime? @db.Date
-  workerID     Int?
+  workerId     String?
+  adoptersId   String
+  dog          dogs?     @relation(fields: [dogsId], references: [id])
+  worker       Worker?   @relation(fields: [workerId], references: [id])
+  adopters     Adopters  @relation(fields: [adoptersId], references: [id])
 
-  @@index([adopterID], map: "adopterID_idx")
-  @@index([uniqNum], map: "uniqNum_idx")
-  @@ignore
+  @@index([workerId])
+  @@index([dogsId])
+  @@index([adoptersId])
 }
 
-model cityinstate {
-  cityinstateId Int     @id
-  statename     String  @db.VarChar(45)
-  cityname      String? @db.VarChar(45)
-  cityCode      Int?
+model City {
+  name      String     @db.VarChar(45)
+  stateName String?    @db.VarChar(45)
+  code      BigInt     @id
+  state     State?     @relation(fields: [stateName], references: [name])
+  Delivers  Delivers[]
+  Adopters  Adopters[]
 
-  @@index([statename], map: "statename_idx")
-  @@ignore
+  @@index([stateName])
 }
 
-model delivers {
-  deliverID  Int     @id
-  name       String? @db.VarChar(45)
-  familyname String? @db.VarChar(45)
-  address    String? @db.VarChar(45)
-  cityCode   Int?
+model Delivers {
+  id         String     @id @default(uuid())
+  name       String?    @db.VarChar(45)
+  familyName String?    @db.VarChar(45)
+  address    String?    @db.VarChar(45)
   phone      Int?
+  cityCode   BigInt?
+  city       City?      @relation(fields: [cityCode], references: [code])
+  Delivery   Delivery[]
+
+  @@index([cityCode])
 }
 
-model delivery {
-  deliverID    Int       @id
-  uniqNum      Int
+model Delivery {
+  id           String    @id @default(uuid())
+  dogsId       String?   @unique
   deliveryDate DateTime? @db.Date
-  workerID     Int?
+  workerId     String?
+  deliversId   String?
+  dog          dogs?     @relation(fields: [dogsId], references: [id])
+  worker       Worker?   @relation(fields: [workerId], references: [id])
+  delivers     Delivers? @relation(fields: [deliversId], references: [id])
 
-  @@index([deliverID], map: "deliverID_idx")
-  @@index([uniqNum], map: "uniqNum_idx")
-  @@ignore
+  @@index([workerId])
+  @@index([dogsId])
+  @@index([deliversId])
 }
 
 model dogs {
-  uniqNum     String    @id @default(uuid())
-  chipNum     String?
-  diskit      Int?
-  name        String?   @db.VarChar(45)
-  status      String?   @db.VarChar(45)
-  cabin       String?   @db.VarChar(45)
-  breed       String?   @db.VarChar(45)
-  size        String?   @db.VarChar(45)
-  gender      String?   @db.VarChar(45)
-  birthDate   DateTime? @db.Date
-  arriveCause DateTime  @default(now())
-  leaveCause  DateTime? @db.Date
+  id         String      @id @default(uuid())
+  chipNum    String?
+  diskit     BigInt?
+  name       String?     @db.VarChar(45)
+  status     String?     @db.VarChar(45)
+  cabin      String?     @db.VarChar(45)
+  breed      String?     @db.VarChar(45)
+  size       String?     @db.VarChar(45)
+  gender     String?     @db.VarChar(45)
+  birthDate  DateTime?   @db.Date
+  arriveDate DateTime?   @db.Date
+  leaveDate  DateTime?   @db.Date
+  vaccine    Vaccine[]
+  adoption   Adoption?
+  delivery   Delivery?
+  treatments Treatment[]
 }
 
-model payment {
-  payCode   Int       @id
-  adopterID Int?
-  payDate   DateTime? @db.Date
-  amount    Int?
-  reason    String?   @db.VarChar(45)
-
-  @@index([adopterID], map: "adopterID1_idx")
+model State {
+  name    String  @id @db.VarChar(45)
+  vetName String? @db.VarChar(45)
+  phone   Int?
+  City    City[]
 }
 
-model states {
-  statename String  @id @db.VarChar(45)
-  vetName   String? @db.VarChar(45)
-  phone     Int?
-}
-
-model vacclist {
-  vaccName String  @id @db.VarChar(45)
-  freq     String? @db.VarChar(45)
-}
-
-model workers {
-  workerID   Int     @id
-  name       String? @db.VarChar(45)
-  familyname String? @db.VarChar(45)
-  job        String? @db.VarChar(45)
+model Worker {
+  id         String      @id @default(uuid())
+  name       String?     @db.VarChar(45)
+  familyName String?     @db.VarChar(45)
+  job        String?     @db.VarChar(45)
   phone      Int?
+  Vaccine    Vaccine[]
+  Treatment  Treatment[]
+  Adoption   Adoption[]
+  Delivery   Delivery[]
 }
