@@ -13,7 +13,7 @@ interface DepartureProps {
 }
 
 function Departure({ control, errors }: DepartureProps) {
-    const dateVal = useWatch({ control, name: "leaveCause" })
+    const dateVal = useWatch({ control, name: "leaveDate" })
     const [value, setValue] = React.useState(dayjs(dateVal))
     return (
         <>
@@ -27,7 +27,7 @@ function Departure({ control, errors }: DepartureProps) {
                 }}
             >
                 <Controller
-                    name="leaveCause"
+                    name="leaveDate"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (

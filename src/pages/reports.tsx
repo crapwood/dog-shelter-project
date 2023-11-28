@@ -68,7 +68,7 @@ function Reports() {
             { label: "Name", key: "name" },
             { label: "Breed", key: "breed" },
             { label: "Gender", key: "gender" },
-            { label: "Arrival", key: "arriveCause" }
+            { label: "Arrival Date", key: "arriveDate" }
         ];
         generateCSV(csvHeader, data, 'new-file')
 

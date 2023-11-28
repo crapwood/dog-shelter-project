@@ -29,7 +29,7 @@ function Vaccines() {
             }
         },
         {
-            field: "arriveCause", headerName: "תאריך טיפול", width: 200, renderCell: (params) => {
+            field: "arriveDate", headerName: "תאריך טיפול", width: 200, renderCell: (params) => {
                 const isoDate = new Date(params.value).toISOString().split('T')[0]
                 return (<b>{isoDate}</b>)
             }

@@ -14,7 +14,7 @@ interface PersonDetailsProps {
 }
 
 function PersonDetails({ control, errors }: PersonDetailsProps) {
-    const dateVal = useWatch({ control, name: "arriveCause" })
+    const dateVal = useWatch({ control, name: "arriveDate" })
     const [value, setValue] = React.useState(dayjs(dateVal))
     return (
         <>
@@ -28,7 +28,7 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                 }}
             >
                 <Controller
-                    name="arriveCause"
+                    name="arriveDate"
                     control={control}
                     rules={{ required: true }}
                     render={({ field }) => (

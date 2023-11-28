@@ -51,7 +51,7 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
             breed: selectedRowData[0]?.breed || '',
             cabin: selectedRowData[0]?.cabin || '',
             size: selectedRowData[0]?.size || '',
-            arriveCause: selectedRowData[0]?.arriveCause || ''
+            arriveDate: selectedRowData[0]?.arriveDate || ''
         }
         reset(defaults)
     }, [selectedRowData, reset]);
