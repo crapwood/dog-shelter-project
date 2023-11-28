@@ -30,7 +30,7 @@ CREATE TABLE `Adopters` (
     `name` VARCHAR(45) NULL,
     `familyName` VARCHAR(45) NULL,
     `address` VARCHAR(45) NULL,
-    `cityCode` BIGINT NULL,
+    `cityCode` INTEGER NULL,
     `phone` INTEGER NULL,
 
     INDEX `Adopters_cityCode_idx`(`cityCode`),
@@ -56,7 +56,7 @@ CREATE TABLE `Adoption` (
 CREATE TABLE `City` (
     `name` VARCHAR(45) NOT NULL,
     `stateName` VARCHAR(45) NULL,
-    `code` BIGINT NOT NULL,
+    `code` INTEGER NOT NULL,
 
     INDEX `City_stateName_idx`(`stateName`),
     PRIMARY KEY (`code`)
@@ -69,7 +69,7 @@ CREATE TABLE `Delivers` (
     `familyName` VARCHAR(45) NULL,
     `address` VARCHAR(45) NULL,
     `phone` INTEGER NULL,
-    `cityCode` BIGINT NULL,
+    `cityCode` INTEGER NULL,
 
     INDEX `Delivers_cityCode_idx`(`cityCode`),
     PRIMARY KEY (`id`)
@@ -94,7 +94,7 @@ CREATE TABLE `Delivery` (
 CREATE TABLE `dogs` (
     `id` VARCHAR(191) NOT NULL,
     `chipNum` VARCHAR(191) NULL,
-    `diskit` BIGINT NULL,
+    `diskit` INTEGER NULL,
     `name` VARCHAR(45) NULL,
     `status` VARCHAR(45) NULL,
     `cabin` VARCHAR(45) NULL,
