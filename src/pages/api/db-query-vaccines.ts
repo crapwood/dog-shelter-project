@@ -12,7 +12,7 @@ export default async function handler(req, res) {
                     AND: [
                         {
                             treatments: {
-                                every: {
+                                some: {
                                     datePerformed: {
                                         lte: new Date(plusTenDaysDate)
                                     }
@@ -21,7 +21,7 @@ export default async function handler(req, res) {
                         },
                         {
                             vaccine: {
-                                every: {
+                                some: {
                                     dateAdministered: {
                                         lte: new Date(plusTenDaysDate)
                                     }

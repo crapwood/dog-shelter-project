@@ -111,7 +111,7 @@ export const genderFilterOptions = ["זכר", "נקבה"];
 
 export const statusFilterOptions = ["נוכח", "עזב"];
 
-export const docTypeFilterOptions = ["מצב עדכני", "כלבים שנקלטו", "כלבים שנמסרו", "בעלי שבבים"];
+export const docTypeFilterOptions = ["מצב עדכני", "כלבים שנקלטו", "כלבים שנמסרו", "בעלי שבבים","כלבים שעוקרו" ,"העברה לרשויות"];
 
 export const stateNamesFilterOptions = ["חיפה", "תל אביב", "ירושלים", "נתניה","רמת גן"];
 

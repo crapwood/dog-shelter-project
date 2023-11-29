@@ -32,7 +32,7 @@ function NewAnimal() {
     });
     const onSubmit = async (data) => {
         setViewMode(undefined);
-        const formData = { ...data, diskit: Number(data.diskit), delivererPhone: Number(data.delivererPhone) };
+        const formData = { ...data};
         await fetch("/api/db-queries", {
             method: "POST",
             headers: {

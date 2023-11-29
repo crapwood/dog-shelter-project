@@ -3,7 +3,7 @@ import prisma from "../../db/db";
 
 export default async function handler(req, res) {
     if (req.method === "POST") {
-        // try {
+        try {
         const {
             toDate,
             fromDate,
@@ -14,9 +14,9 @@ export default async function handler(req, res) {
             where: {...setQuery(docType[0], toDate, fromDate)}
         });
         res.status(200).json(data);
-        // } catch (err) {
-        //     res.status(500).send({ error: err });
-        // }
+        } catch (err) {
+            res.status(500).send({ error: err });
+        }
     }
 }
 
@@ -72,7 +72,14 @@ function setQuery(docType, toDate, fromDate) {
             }
         }
         default:
-            return "error"
+            return {
+                AND: [{
+                    arriveDate: {
+                        lte: toDate,
+                        gte: fromDate
+                    }
+                }]
+            }
     }
 
 

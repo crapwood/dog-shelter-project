@@ -90,7 +90,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                             render={({ field }) => (
                                 <Box sx={{ marginLeft: "8px" }}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field}
+                                        <DatePicker shouldCloseOnSelect={true} label="פג תוקף חיסון" {...field}
                                                     slotProps={{
                                                         field: { clearable: true },
 
@@ -138,7 +138,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                             render={({ field }) => (
                                 <Box sx={{ marginLeft: "8px" }}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field}
+                                        <DatePicker shouldCloseOnSelect={true} label="פג תוקף חיסון" {...field}
                                                     slotProps={{
                                                         field: { clearable: true },
 
@@ -186,7 +186,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                             render={({ field }) => (
                                 <Box sx={{ marginLeft: "8px" }}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field}
+                                        <DatePicker shouldCloseOnSelect={true} label="פג תוקף חיסון" {...field}
                                                     slotProps={{
                                                         field: { clearable: true },
 
@@ -234,7 +234,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                             render={({ field }) => (
                                 <Box sx={{ marginLeft: "8px" }}>
                                     <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                        <DatePicker shouldCloseOnSelect={true} label="תאריך חיסון" {...field}
+                                        <DatePicker shouldCloseOnSelect={true} label="פג תוקף חיסון" {...field}
                                                     slotProps={{
                                                         field: { clearable: true },
 

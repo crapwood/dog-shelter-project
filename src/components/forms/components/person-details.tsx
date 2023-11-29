@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Controller } from "react-hook-form";
-import { FormLabel, TextField, Box, Typography } from "@mui/material";
+import { FormLabel, TextField, Box, Typography, Button } from "@mui/material";
 import { useWatch } from "react-hook-form"
 
 interface PersonDetailsProps {
@@ -142,6 +142,17 @@ function PersonDetails({ control, errors, setValue }: PersonDetailsProps) {
                         </>
                     )}
                 />
+                <Button
+                    variant="contained"
+                    component="label"
+                    sx={{width: "200px"}}
+                >
+                    הוספת קובץ
+                    <input
+                        type="file"
+                        hidden
+                    />
+                </Button>
             </Box>
         </>
     );
