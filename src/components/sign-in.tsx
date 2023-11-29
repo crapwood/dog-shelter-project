@@ -19,7 +19,9 @@ const users = [{ username: 'admin', password: '1234', isAdmin: true }, {
 }]
 
 export function SignIn() {
-    const [dogUrl, setDogUrl] = useState<string>('')
+    const [dogUrl, setDogUrl] = useState<string>('');
+    const [showError, setShowError] = useState(false);
+    const errorMessage = "משתמש אינו קיים במערכת"
     const { push } = useRouter();
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -27,6 +29,9 @@ export function SignIn() {
         const isUser = users.some((user) => user.username === data.get("username") && user.password === data.get("password"));
         if (isUser) {
             push('/main-page')
+            setShowError(false)
+        }else{
+            setShowError(true)
         }
     };
 
@@ -104,6 +109,7 @@ export function SignIn() {
                                     autoComplete="username"
                                     autoFocus
                                 />
+                                {showError ? <Typography variant="caption" color="red">{errorMessage}</Typography> : undefined}
                                 <TextField
                                     margin="normal"
                                     required
