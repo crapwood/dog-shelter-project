@@ -8,7 +8,8 @@ import {
     FormControl,
     RadioGroup,
     Select,
-    MenuItem
+    MenuItem,
+    Typography
 } from "@mui/material";
 import { Controller } from "react-hook-form";
 import { cabinsFilterOptions, breedFilterOptions, sizeFilterOptions } from "@/constants/constants";
@@ -32,7 +33,7 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
             <Controller
                 name="name"
                 control={control}
-                rules={{ required: true }}
+                rules={{ required: "השדה חובה" }}
                 render={({ field }) => (
                     <>
                         <FormLabel id="demo-textfield-label">שם</FormLabel>
@@ -40,15 +41,17 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
                             {...field}
                             aria-labelledby="demo-textfield-label"
                             value={field.value || ""}
+                            error={errors?.name}
                         />
+                        {errors?.name?.message ? <Typography variant="body1" color={"red"}>{errors?.name?.message}</Typography> :undefined}
                         <br/>
                     </>
                 )}
             />
+
             <Controller
                 name="gender"
                 control={control}
-                // rules={{ required: true }}
                 render={({ field }) => (
                     <FormControl>
                         <FormLabel id="demo-radio-buttons-group-label">מין</FormLabel>
@@ -77,7 +80,6 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
             <Controller
                 name="size"
                 control={control}
-                // rules={{ required: true }}
                 render={({ field }) => (
                     <>
                         <FormLabel id="demo-textfield-label">גודל</FormLabel>
@@ -103,7 +105,6 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
             <Controller
                 name="breed"
                 control={control}
-                // rules={{ required: true }}
                 render={({ field }) => (
                     <>
                         <FormLabel id="demo-textfield-label">גזע </FormLabel>
@@ -129,8 +130,7 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
                 <Controller
                     name="chipNum"
                     control={control}
-                    // rules={{ required: true }}
-                    rules={{ minLength: 15, maxLength: 15 }}
+                    rules={{ maxLength: { value:15, message: 'ספרות בלבד 15' } }}
                     render={({ field }) => (
                         <Box sx={{display: 'flex', flexDirection: 'column', marginRight: '24px'}}>
                             <FormLabel id="demo-textfield-label">מס. שבב</FormLabel>
@@ -149,6 +149,7 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
                                 type="number"
                                 error={errors?.chipNum}
                             />
+                            {errors?.chipNum?.message ? <Typography variant="body1" color={"red"}>{errors?.chipNum?.message}</Typography> :undefined}
                             <br/>
                         </Box>
                     )}
@@ -184,7 +185,6 @@ function AnimalDetails({ control, errors }: AnimalDetailsProps) {
             <Controller
                 name="cabin"
                 control={control}
-                // rules={{ required: true }}
                 render={({ field }) => (
                     <>
                         <FormLabel id="demo-textfield-label">ביתן</FormLabel>

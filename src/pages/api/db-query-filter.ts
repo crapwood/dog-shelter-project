@@ -22,7 +22,7 @@ function handleFilters(filters) {
             breed: { equals: filters.breed[0] },
             gender: { equals: filters.gender[0] },
             size: { equals: filters.size[0] },
-            diskit: { equals: filters.diskit[0] ? Number(filters.diskit[0]) : filters.diskit[0] },
+            diskit: { equals: filters.diskit[0] },
             chipNum: { equals: filters.chipNum[0] },
             cabin: { equals: filters.cabin[0] },
             status: { equals: filters.status[0] },

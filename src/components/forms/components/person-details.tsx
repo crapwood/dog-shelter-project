@@ -5,17 +5,24 @@ import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { Controller } from "react-hook-form";
-import { FormLabel, TextField, Box } from "@mui/material";
+import { FormLabel, TextField, Box, Typography } from "@mui/material";
 import { useWatch } from "react-hook-form"
 
 interface PersonDetailsProps {
     control: any;
     errors: any;
+    setValue: any;
 }
 
-function PersonDetails({ control, errors }: PersonDetailsProps) {
-    const dateVal = useWatch({ control, name: "arriveDate" })
-    const [value, setValue] = React.useState(dayjs(dateVal))
+function PersonDetails({ control, errors, setValue }: PersonDetailsProps) {
+    const dateVal = useWatch({ control, name: "arriveDate" });
+    const [day, setDay] = React.useState(dayjs(dateVal));
+
+    function handleDaySelect(day) {
+        setDay(day);
+        setValue('arriveDate',day);
+    }
+
     return (
         <>
             <Box
@@ -30,7 +37,7 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                 <Controller
                     name="arriveDate"
                     control={control}
-                    rules={{ required: true }}
+                    rules={{ required: "השדה חובה" }}
                     render={({ field }) => (
                         <>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -41,9 +48,11 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                                     // }
                                 }} sx={{ width: "300px" }}
                                             format="DD/MM/YYYY"
-                                            value={value}
-                                            onChange={(newValue) => setValue(newValue)}/>
+                                            value={day}
+                                            onChange={(newDay) => handleDaySelect(newDay) }
+                                />
                             </LocalizationProvider>
+                            {errors?.arriveDate?.message ? <Typography variant="body1" color={"red"}>{errors?.arriveDate?.message}</Typography> :undefined}
                             <br/>
                         </>
                     )}
@@ -51,7 +60,7 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                 <Controller
                     name="delivererName"
                     control={control}
-                    rules={{ required: true }}
+                    rules={{ required: "השדה חובה" }}
                     render={({ field }) => (
                         <>
                             <FormLabel id="demo-textfield-label">שם</FormLabel>
@@ -59,7 +68,9 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                                 {...field}
                                 aria-labelledby="demo-textfield-label"
                                 sx={{ width: "500px" }}
+                                error={errors?.delivererName}
                             />
+                            {errors?.delivererName?.message ? <Typography variant="body1" color={"red"}>{errors?.delivererName?.message}</Typography> :undefined}
                             <br/>
                         </>
                     )}
@@ -67,7 +78,6 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                 <Controller
                     name="delivererFamilyName"
                     control={control}
-                    // rules={{ required: true }}
                     render={({ field }) => (
                         <>
                             <FormLabel id="demo-textfield-label">שם משפחה</FormLabel>
@@ -84,7 +94,6 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                 <Controller
                     name="delivererAddress"
                     control={control}
-                    // rules={{ required: true }}
                     render={({ field }) => (
                         <>
                             <FormLabel id="demo-textfield-label">כתובת</FormLabel>
@@ -96,7 +105,6 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                 <Controller
                     name="delivererPhone"
                     control={control}
-                    // rules={{ required: true }}
                     render={({ field }) => (
                         <>
                             <FormLabel id="demo-textfield-label">טלפון/פלאפון</FormLabel>
@@ -120,7 +128,6 @@ function PersonDetails({ control, errors }: PersonDetailsProps) {
                 <Controller
                     name="delivererComments"
                     control={control}
-                    // rules={{ required: true }}
                     render={({ field }) => (
                         <>
                             <FormLabel id="demo-textfield-label">הערות</FormLabel>

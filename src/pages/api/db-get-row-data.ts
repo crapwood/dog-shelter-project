@@ -3,22 +3,36 @@ import prisma from "../../db/db";
 
 export default async function handler(req, res) {
     if (req.method === "POST") {
-        try {
+        // try {
             const payload = await req.body;
             const filters = handleFilters(payload)
             const data = await prisma.dogs.findMany({ ...filters });
             res.status(200).json(data);
 
-        } catch (err) {
-            res.status(500).send({ error: err });
-        }
+        // } catch (err) {
+        //     res.status(500).send({ error: err });
+        // }
     }
 }
 
 function handleFilters(filters) {
     return {
         where: {
-            uniqNum: { equals: filters.uniqNum }
+            id: { equals: filters.id }
+        },
+        include: {
+            delivery: {
+                include: {
+                    delivers : true
+                }
+            },
+            adoption: {
+                include: {
+                    adopters: true
+                }
+            },
+            vaccine: true,
+            treatments: true
         }
     };
 }

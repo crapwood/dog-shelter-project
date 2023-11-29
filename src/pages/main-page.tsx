@@ -2,30 +2,14 @@
 import React, { useEffect, useState } from "react";
 import { DataGrid, GridColDef, GridRowSelectionModel } from "@mui/x-data-grid";
 import {
-    Accordion,
-    AccordionDetails,
-    AccordionSummary,
-    Box, Button,
+    Box,
     Divider,
-    Drawer,
-    LinearProgress,
-    Typography
 } from "@mui/material";
 import "../styles/main-page.scss";
 import Grid from "@mui/material/Grid";
 import Navbar from "@/components/navbar";
 import Filters from "@/components/filters";
 import { useGlobalStore } from "@/store/global-items.store";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import PetsIcon from "@mui/icons-material/Pets";
-import AnimalDetails from "@/components/forms/components/animal-details";
-import PersonIcon from "@mui/icons-material/Person";
-import PersonDetails from "@/components/forms/components/person-details";
-import VaccinesIcon from "@mui/icons-material/Vaccines";
-import Treatments from "@/components/forms/components/treatments";
-import { VIEW_MODE } from "@/enums/enums";
-import CelebrationIcon from "@mui/icons-material/Celebration";
-import { useForm } from "react-hook-form";
 import EditButton from "@/components/edit-button";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -74,7 +58,7 @@ export default function MainPage() {
         setData(response);
     }
 
-    async function fetchSelectedRowData(selecteRowUniqNum) {
+    async function fetchSelectedRowData(selecteRowId) {
         const req = await fetch(`/api/db-get-row-data`, {
             method: 'POST',
             headers: {
@@ -83,7 +67,7 @@ export default function MainPage() {
             },
             cache: "no-cache",
             body: JSON.stringify({
-                uniqNum: selecteRowUniqNum
+                id: selecteRowId
             })
         });
         const response = await req.json();
@@ -102,7 +86,7 @@ export default function MainPage() {
 
     function handleEditButtonClick() {
         setOpenSidepanel(true);
-        fetchSelectedRowData(selectedRow.uniqNum)
+        fetchSelectedRowData(selectedRow.id)
     }
 
     const columns: GridColDef[] = [
@@ -112,7 +96,7 @@ export default function MainPage() {
             }
         },
         {
-            field: "id", headerName: "מס.", width: 70, renderCell: (params) => {
+            field: "index", headerName: "מס.", width: 70, renderCell: (params) => {
                 return (<b>{params.value}</b>)
             }
         },
@@ -170,7 +154,7 @@ export default function MainPage() {
     function setupRowData() {
         return data.map((entry, index) => {
             index++;
-            return { ...entry, id: index };
+            return { ...entry, index: index };
         });
     }
 

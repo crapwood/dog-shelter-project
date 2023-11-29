@@ -105,7 +105,6 @@ function Navbar(props: Props) {
                         <Link href={`${linkNavItems[item as NavItems]}`}>
                             <ListItemButton
                                 sx={{ textAlign: "center" }}
-                                onClick={() => console.log(item)}
                             >
                                 <ListItemText primary={item}/>
                             </ListItemButton>

@@ -18,7 +18,7 @@ function NewAnimal() {
     const { viewMode, setViewMode } = useGlobalStore();
 
     const { push } = useRouter();
-    const { handleSubmit, control, reset, formState: { errors } } = useForm({
+    const { handleSubmit, control, reset, formState: { errors }, setValue } = useForm({
         defaultValues: {
             name: "",
             chipNum: "",
@@ -32,8 +32,7 @@ function NewAnimal() {
     });
     const onSubmit = async (data) => {
         setViewMode(undefined);
-        const formData = { ...data, diskit: Number(data.diskit) };
-        console.log(formData)
+        const formData = { ...data, diskit: Number(data.diskit), delivererPhone: Number(data.delivererPhone) };
         await fetch("/api/db-queries", {
             method: "POST",
             headers: {
@@ -102,7 +101,7 @@ function NewAnimal() {
                             <PersonIcon fontSize="small" sx={{ marginLeft: '8px' }}/>
                         </AccordionSummary>
                         <AccordionDetails>
-                            <PersonDetails control={control} errors={errors}/>
+                            <PersonDetails control={control} errors={errors} setValue={setValue}/>
                         </AccordionDetails>
                     </Accordion>
                     <Box sx={{ display: "flex", justifyContent: "center", marginTop: '16px' }}>

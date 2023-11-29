@@ -22,7 +22,7 @@ model Treatment {
 }
 
 model Vaccine {
-  id               Int       @id
+  id               String    @id @default(uuid())
   name             String?   @db.VarChar(45)
   dateAdministered DateTime? @db.Date
   workerId         String?
@@ -40,7 +40,7 @@ model Adopters {
   familyName String?    @db.VarChar(45)
   address    String?    @db.VarChar(45)
   cityCode   Int?
-  phone      Int?
+  phone      String?
   city       City?      @relation(fields: [cityCode], references: [code])
   Adoption   Adoption[]
 
@@ -77,8 +77,8 @@ model Delivers {
   id         String     @id @default(uuid())
   name       String?    @db.VarChar(45)
   familyName String?    @db.VarChar(45)
-  address    String?    @db.VarChar(45)
-  phone      Int?
+  address    String?
+  phone      String?
   cityCode   Int?
   city       City?      @relation(fields: [cityCode], references: [code])
   Delivery   Delivery[]
@@ -104,7 +104,7 @@ model Delivery {
 model dogs {
   id         String      @id @default(uuid())
   chipNum    String?
-  diskit     Int?
+  diskit     String?
   name       String?     @db.VarChar(45)
   status     String?     @db.VarChar(45)
   cabin      String?     @db.VarChar(45)

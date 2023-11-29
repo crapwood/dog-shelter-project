@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { useGlobalStore } from "@/store/global-items.store";
 import Departure from "@/components/forms/components/departure";
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
+import { useRouter } from 'next/router';
 
 interface SidepanelProps {
     openSidepanel: boolean;
@@ -23,12 +24,13 @@ interface SidepanelProps {
 
 export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: SidepanelProps) {
     const [expand, setExpand] = React.useState<string | true>(true);
+    const router = useRouter();
     const {
         viewMode,
         selectedRowFromGrid,
         setSelectedRowFromGrid
     } = useGlobalStore();
-    const { handleSubmit, control, reset, formState } = useForm({
+    const { handleSubmit, control, reset, formState, setValue } = useForm({
         defaultValues: {
             name: "",
             chipNum: "",
@@ -38,6 +40,11 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
             breed: "",
             cabin: "",
             size: "",
+            arriveDate: '',
+            delivererName: '',
+            delivererPhone: '',
+            delivererAddress: '',
+            delivererFamilyName: '',
         },
     });
 
@@ -45,30 +52,54 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
         const defaults = {
             name: selectedRowData[0]?.name || '',
             chipNum: selectedRowData[0]?.chipNum || '',
-            status: selectedRowData[0]?.status || '',
+            status: selectedRowData[0]?.leaveDate || selectedRowData[0]?.adoption?.adoptionDate ? 'עזב' : selectedRowData[0]?.status || 'נוכח',
             diskit: selectedRowData[0]?.diskit || '',
             gender: selectedRowData[0]?.gender || "זכר",
             breed: selectedRowData[0]?.breed || '',
             cabin: selectedRowData[0]?.cabin || '',
             size: selectedRowData[0]?.size || '',
-            arriveDate: selectedRowData[0]?.arriveDate || ''
+            arriveDate: selectedRowData[0]?.arriveDate || '',
+            delivererName: selectedRowData[0]?.delivery?.delivers?.name || '',
+            delivererPhone: selectedRowData[0]?.delivery?.delivers?.phone || '',
+            delivererAddress: selectedRowData[0]?.delivery?.delivers?.address || '',
+            delivererFamilyName: selectedRowData[0]?.delivery?.delivers?.familyName || '',
+            leaveDate: selectedRowData[0]?.leaveDate || selectedRowData[0]?.adoption?.adoptionDate || '',
+            adopter: selectedRowData[0]?.adoption?.adopters?.name || '',
+            adopterAddress: selectedRowData[0]?.adoption?.adopters?.address || '',
+            adopterFamilyName: selectedRowData[0]?.adoption?.adopters?.familyName || '',
+            adopterPhone: selectedRowData[0]?.adoption?.adopters?.phone || '',
+            adopterPhone: selectedRowData[0]?.adoption?.adopters?.phone || '',
+            adoptionDate: selectedRowData[0]?.leaveDate || selectedRowData[0]?.adoption?.adoptionDate || '',
+            tolahim: {
+                dateAdministered: selectedRowData[0]?.treatments.find((treatment) => treatment.name === 'תולעים')?.datePerformed || ''
+            },
+            ikur: {
+                dateAdministered: selectedRowData[0]?.treatments.find((treatment) => treatment.name === 'עיקור')?.datePerformed || ''
+            }
         }
         reset(defaults)
     }, [selectedRowData, reset]);
 
     const onSubmit = async (data) => {
-        setViewMode(undefined);
-        const formData = { ...data, diskit: Number(data.diskit) };
-        console.log(formData)
-        // await fetch("/api/db-queries", {
-        //   method: "POST",
-        //   headers: {
-        //     Accept: "application/json",
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(formData),
-        // });
-        // await push("/main-page");
+        const formData = {
+            ...data,
+            diskit: data.diskit,
+            delivererPhone: data.delivererPhone,
+            adopterPhone: data.adopterPhone,
+            id: selectedRowData[0]?.id,
+            status: data.adoptionDate ? 'עזב' : 'נוכח',
+            deliveryId: selectedRowData[0]?.delivery?.id
+        };
+        await fetch("/api/db-update", {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
+        setOpenSidepanel(false);
+        router.reload();
     };
 
     const handleExpand =
@@ -121,7 +152,7 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
                                 <PersonIcon fontSize="small" sx={{ marginLeft: '8px' }}/>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <PersonDetails control={control} errors={formState.errors}/>
+                                <PersonDetails control={control} errors={formState.errors} setValue={setValue}/>
                             </AccordionDetails>
                         </Accordion>
                         <Accordion sx={{
@@ -134,11 +165,11 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
                                 aria-controls="panel2a-content"
                                 id="panel2a-header"
                             >
-                                <Typography>טיפולים</Typography>
+                                <Typography>טיפולים/חיסונים</Typography>
                                 <VaccinesIcon fontSize="small" sx={{ marginLeft: '8px' }}/>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Treatments control={control} errors={formState.errors}/>
+                                <Treatments control={control} errors={formState.errors} setValue={setValue}/>
                             </AccordionDetails>
                         </Accordion>
                         <Accordion sx={{
@@ -155,7 +186,7 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
                                 <FlightTakeoffIcon fontSize="small" sx={{ marginLeft: '8px' }}/>
                             </AccordionSummary>
                             <AccordionDetails>
-                                <Departure control={control} errors={formState.errors}/>
+                                <Departure control={control} errors={formState.errors} setValue={setValue}/>
                             </AccordionDetails>
                         </Accordion>
                         <Box sx={{ display: "flex", justifyContent: "center", marginTop: '16px' }}>
@@ -171,11 +202,9 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
                                 type="submit"
                                 variant="contained"
                                 sx={{ width: "100px", height: "56px", margin: '4px' }}
-                                // size="small"
                             >
                                 שמירה
                             </Button>
-
                         </Box>
                     </form>
                 </Box>

@@ -29,12 +29,6 @@ function Vaccines() {
             }
         },
         {
-            field: "arriveDate", headerName: "תאריך טיפול", width: 200, renderCell: (params) => {
-                const isoDate = new Date(params.value).toISOString().split('T')[0]
-                return (<b>{isoDate}</b>)
-            }
-        },
-        {
             field: "name", headerName: "שם", width: 150, renderCell: (params) => {
                 return (<b>{params.value}</b>)
             }
@@ -52,7 +46,17 @@ function Vaccines() {
             }
         },
         {
+            field: "size", headerName: "גודל", width: 100, renderCell: (params) => {
+                return (<b>{params.value}</b>)
+            }
+        },
+        {
             field: "chipNum", headerName: "מס. שבב", width: 250, renderCell: (params) => {
+                return (<b>{params.value}</b>)
+            }
+        },
+        {
+            field: "cabin", headerName: "ביתן", width: 180, renderCell: (params) => {
                 return (<b>{params.value}</b>)
             }
         },

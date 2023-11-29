@@ -10,11 +10,18 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 interface DepartureProps {
     control: any;
     errors: any;
+    setValue: any
 }
 
-function Departure({ control, errors }: DepartureProps) {
-    const dateVal = useWatch({ control, name: "leaveDate" })
-    const [value, setValue] = React.useState(dayjs(dateVal))
+function Departure({ control, errors, setValue }: DepartureProps) {
+    const dateVal = useWatch({ control, name: "adoptionDate" })
+    const [day, setDay] = React.useState(dayjs(dateVal))
+
+    function handleDaySelect(day) {
+        setDay(day);
+        setValue('adoptionDate',day);
+    }
+
     return (
         <>
             <Box
@@ -27,30 +34,28 @@ function Departure({ control, errors }: DepartureProps) {
                 }}
             >
                 <Controller
-                    name="leaveDate"
+                    name="adoptionDate"
                     control={control}
-                    rules={{ required: true }}
                     render={({ field }) => (
                         <>
                             <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                <DatePicker shouldCloseOnSelect={true} label="תאריך מסירה" {...field} slotProps={{
+                                <DatePicker shouldCloseOnSelect={true} label="תאריך עזיבה" {...field} slotProps={{
                                     field: { clearable: true },
                                     // textField: {
                                     //     onClick: () => setOpenDatePicker(true),
                                     // }
                                 }} sx={{ width: "300px" }}
                                             format="DD/MM/YYYY"
-                                            value={value}
-                                            onChange={(newValue) => setValue(newValue)}/>
+                                            value={day}
+                                            onChange={(newValue) => handleDaySelect(newValue)}/>
                             </LocalizationProvider>
                             <br/>
                         </>
                     )}
                 />
                 <Controller
-                    name="delivererName"
+                    name="adopter"
                     control={control}
-                    rules={{ required: true }}
                     render={({ field }) => (
                         <>
                             <FormLabel id="demo-textfield-label">שם</FormLabel>
@@ -64,7 +69,7 @@ function Departure({ control, errors }: DepartureProps) {
                     )}
                 />
                 <Controller
-                    name="delivererFamilyName"
+                    name="adopterFamilyName"
                     control={control}
                     // rules={{ required: true }}
                     render={({ field }) => (
@@ -81,7 +86,7 @@ function Departure({ control, errors }: DepartureProps) {
                 />
 
                 <Controller
-                    name="delivererAddress"
+                    name="adopterAddress"
                     control={control}
                     // rules={{ required: true }}
                     render={({ field }) => (
@@ -93,7 +98,7 @@ function Departure({ control, errors }: DepartureProps) {
                     )}
                 />
                 <Controller
-                    name="delivererPhone"
+                    name="adopterPhone"
                     control={control}
                     // rules={{ required: true }}
                     render={({ field }) => (
@@ -117,7 +122,7 @@ function Departure({ control, errors }: DepartureProps) {
                     )}
                 />
                 <Controller
-                    name="delivererComments"
+                    name="adopterComments"
                     control={control}
                     // rules={{ required: true }}
                     render={({ field }) => (

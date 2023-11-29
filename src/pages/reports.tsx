@@ -61,32 +61,32 @@ function Reports() {
     };
 
     async function fetchData() {
-        const req = await fetch(`/api/db-query-vaccines`);
+
+        const formData = { toDate, fromDate, docType }
+        const req = await fetch(`/api/db-report`, {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        });
         const response = await req.json();
         setData(response);
         const csvHeader = [
             { label: "Name", key: "name" },
             { label: "Breed", key: "breed" },
             { label: "Gender", key: "gender" },
-            { label: "Arrival Date", key: "arriveDate" }
+            { label: "Arrival Date", key: "arriveDate" },
+            {label: "Departure", key: 'leaveDate'},
+            {label:"Status", key: 'status'}
         ];
-        generateCSV(csvHeader, data, 'new-file')
-
-        // await fetch("/api/db-queries", {
-        //     method: "POST",
-        //     headers: {
-        //         Accept: "application/json",
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify(formData),
-        // });
+        generateCSV(csvHeader, response, docType)
     }
 
 
     const onSubmit = async (data) => {
-        console.log(data);
-        fetchData()
-        // generateCSV
+        fetchData();
     };
 
     return (
@@ -115,8 +115,8 @@ function Reports() {
                                                                 field: { clearable: true },
                                                             }} sx={{ width: "300px", margin: "0 8px" }}
                                                             format="DD/MM/YYYY"
-                                                            value={fromDate}
-                                                            onChange={(newValue) => setFromDate(newValue)}/>
+                                                            value={toDate}
+                                                            onChange={(newValue) => setToDate(newValue)}/>
                                             </LocalizationProvider>
                                             <br/>
                                         </>
@@ -134,8 +134,8 @@ function Reports() {
                                                                 field: { clearable: true },
                                                             }} sx={{ width: "300px", margin: "0 8px" }}
                                                             format="DD/MM/YYYY"
-                                                            value={toDate}
-                                                            onChange={(newValue) => setToDate(newValue)}/>
+                                                            value={fromDate}
+                                                            onChange={(newValue) => setFromDate(newValue)}/>
                                             </LocalizationProvider>
                                             <br/>
                                         </>
