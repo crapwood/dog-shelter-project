@@ -47,7 +47,7 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
             delivererFamilyName: '',
         },
     });
-
+    console.log(selectedRowData)
     useEffect(() => {
         const defaults = {
             name: selectedRowData[0]?.name || '',

@@ -51,7 +51,7 @@ export default function EditButton({handleEditButtonClick}:EditButtonProps) {
                     horizontal: 'left',
                 }}
             >
-                <MenuItem onClick={editButtonClick}>עריכה</MenuItem>
+                <MenuItem onClick={editButtonClick}>נתונים נוספים</MenuItem>
             </Menu>
         </div>
     );
