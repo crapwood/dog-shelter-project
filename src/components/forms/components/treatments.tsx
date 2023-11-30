@@ -69,7 +69,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                     <Typography variant="body1">חיסון כלבת</Typography>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Controller
-                            name="kalevet.veterinarian"
+                            name="kalevet.veterenarian"
                             control={control}
                             // rules={{ required: true }}
                             render={({ field }) => (
@@ -117,7 +117,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                     <Typography variant="body1">חיסון משושה</Typography>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Controller
-                            name="meshushe.veterinarian"
+                            name="meshushe.veterenarian"
                             control={control}
                             // rules={{ required: true }}
                             render={({ field }) => (
@@ -165,7 +165,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                     <Typography variant="body1">טיפול לתולעים</Typography>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Controller
-                            name="tolahim.veterinarian"
+                            name="tolahim.veterenarian"
                             control={control}
                             // rules={{ required: true }}
                             render={({ field }) => (
@@ -213,7 +213,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                     <Typography variant="body1">עיקור</Typography>
                     <Box sx={{ display: "flex", alignItems: "center" }}>
                         <Controller
-                            name="ikur.veterinarian"
+                            name="ikur.veterenarian"
                             control={control}
                             // rules={{ required: true }}
                             render={({ field }) => (
@@ -250,7 +250,7 @@ function Treatments({ control, errors, setValue }: TreatmentsProps) {
                     </Box>
                 </Box>
                 <Controller
-                    name="treatmentsComments"
+                    name="commentsTreatment"
                     control={control}
                     // rules={{ required: true }}
                     render={({ field }) => (

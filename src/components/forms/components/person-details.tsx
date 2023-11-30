@@ -126,7 +126,7 @@ function PersonDetails({ control, errors, setValue }: PersonDetailsProps) {
                     )}
                 />
                 <Controller
-                    name="delivererComments"
+                    name="commentsArrival"
                     control={control}
                     render={({ field }) => (
                         <>

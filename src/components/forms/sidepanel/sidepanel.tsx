@@ -30,6 +30,7 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
         selectedRowFromGrid,
         setSelectedRowFromGrid
     } = useGlobalStore();
+    console.log(selectedRowData[0])
     const { handleSubmit, control, reset, formState, setValue } = useForm({
         defaultValues: {
             name: "",
@@ -47,7 +48,7 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
             delivererFamilyName: '',
         },
     });
-    console.log(selectedRowData)
+
     useEffect(() => {
         const defaults = {
             name: selectedRowData[0]?.name || '',
@@ -71,11 +72,24 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
             adopterPhone: selectedRowData[0]?.adoption?.adopters?.phone || '',
             adoptionDate: selectedRowData[0]?.leaveDate || selectedRowData[0]?.adoption?.adoptionDate || '',
             tolahim: {
-                dateAdministered: selectedRowData[0]?.treatments.find((treatment) => treatment.name === 'תולעים')?.datePerformed || ''
+                dateAdministered: selectedRowData[0]?.treatments.find((treatment) => treatment.name === 'תולעים')?.datePerformed || '',
+                veterenarian: selectedRowData[0]?.treatments.find((treatment) => treatment.name === 'תולעים')?.veterenarian || ''
             },
             ikur: {
-                dateAdministered: selectedRowData[0]?.treatments.find((treatment) => treatment.name === 'עיקור')?.datePerformed || ''
-            }
+                dateAdministered: selectedRowData[0]?.treatments.find((treatment) => treatment.name === 'עיקור')?.datePerformed || '',
+                veterenarian: selectedRowData[0]?.treatments.find((treatment) => treatment.name === 'עיקור')?.veterenarian || ''
+            },
+            meshushe: {
+                dateAdministered: selectedRowData[0]?.vaccine.find((treatment) => treatment.name === 'חיסון משושה')?.dateAdministered || '',
+                veterenarian: selectedRowData[0]?.vaccine.find((treatment) => treatment.name === 'חיסון משושה')?.veterenarian || ''
+            },
+            kalevet: {
+                dateAdministered: selectedRowData[0]?.vaccine.find((treatment) => treatment.name === 'חיסון כלבת')?.dateAdministered || '',
+                veterenarian: selectedRowData[0]?.vaccine.find((treatment) => treatment.name === 'חיסון כלבת')?.veterenarian || ''
+            },
+            commentsTreatment: selectedRowData[0]?.commentsTreatment || '',
+            commentsDeparture: selectedRowData[0]?.commentsDeparture || '',
+            commentsArrival: selectedRowData[0]?.commentsArrival || '',
         }
         reset(defaults)
     }, [selectedRowData, reset]);
@@ -88,8 +102,12 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
             adopterPhone: data.adopterPhone,
             id: selectedRowData[0]?.id,
             status: data.adoptionDate ? 'עזב' : 'נוכח',
-            deliveryId: selectedRowData[0]?.delivery?.id
+            deliveryId: selectedRowData[0]?.delivery?.id,
+            treatments: selectedRowData[0]?.treatments,
+            vaccines: selectedRowData[0]?.vaccine
         };
+
+        console.log(formData, 'formData');
         await fetch("/api/db-update", {
             method: "POST",
             headers: {
@@ -98,8 +116,8 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
             },
             body: JSON.stringify(formData),
         });
-        setOpenSidepanel(false);
-        router.reload();
+        // setOpenSidepanel(false);
+        // router.reload();
     };
 
     const handleExpand =

@@ -122,7 +122,7 @@ function Departure({ control, errors, setValue }: DepartureProps) {
                     )}
                 />
                 <Controller
-                    name="adopterComments"
+                    name="commentsDeparture"
                     control={control}
                     // rules={{ required: true }}
                     render={({ field }) => (

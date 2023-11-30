@@ -74,12 +74,12 @@ function Reports() {
         const response = await req.json();
         setData(response);
         const csvHeader = [
-            { label: "שם", key: "name" },
-            { label: "גזע", key: "breed" },
-            { label: "מין", key: "gender" },
-            { label: "תאריך קליטה", key: "arriveDate" },
-            {label: "תאריך עזיבה", key: 'leaveDate'},
-            {label:"סטטוס", key: 'status'}
+            { label: "Name", key: "name" },
+            { label: "Breed", key: "breed" },
+            { label: "Gender", key: "gender" },
+            { label: "Arrival Date", key: "arriveDate" },
+            {label: "Departure", key: 'leaveDate'},
+            {label:"Status", key: 'status'}
         ];
         generateCSV(csvHeader, response, docType)
     }

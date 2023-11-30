@@ -5,6 +5,7 @@ CREATE TABLE `Treatment` (
     `workerId` VARCHAR(191) NULL,
     `dogId` VARCHAR(191) NULL,
     `name` VARCHAR(45) NULL,
+    `veterenarian` VARCHAR(191) NULL,
 
     INDEX `Treatment_workerId_idx`(`workerId`),
     INDEX `Treatment_dogId_idx`(`dogId`),
@@ -18,6 +19,7 @@ CREATE TABLE `Vaccine` (
     `dateAdministered` DATE NULL,
     `workerId` VARCHAR(191) NULL,
     `dogId` VARCHAR(191) NULL,
+    `veterenarian` VARCHAR(191) NULL,
 
     INDEX `Vaccine_workerId_idx`(`workerId`),
     INDEX `Vaccine_dogId_idx`(`dogId`),
@@ -104,6 +106,9 @@ CREATE TABLE `dogs` (
     `birthDate` DATE NULL,
     `arriveDate` DATE NULL,
     `leaveDate` DATE NULL,
+    `commentsArrival` VARCHAR(191) NULL,
+    `commentsDeparture` VARCHAR(191) NULL,
+    `commentsTreatment` VARCHAR(191) NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

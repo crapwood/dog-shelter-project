@@ -14,6 +14,7 @@ model Treatment {
   workerId      String?
   dogId         String?
   name          String?   @db.VarChar(45)
+  veterenarian  String?
   worker        Worker?   @relation(fields: [workerId], references: [id])
   Dog           dogs?     @relation(fields: [dogId], references: [id])
 
@@ -27,6 +28,7 @@ model Vaccine {
   dateAdministered DateTime? @db.Date
   workerId         String?
   dogId            String?
+  veterenarian     String?
   worker           Worker?   @relation(fields: [workerId], references: [id])
   dog              dogs?     @relation(fields: [dogId], references: [id])
 
@@ -102,22 +104,25 @@ model Delivery {
 }
 
 model dogs {
-  id         String      @id @default(uuid())
-  chipNum    String?
-  diskit     String?
-  name       String?     @db.VarChar(45)
-  status     String?     @db.VarChar(45)
-  cabin      String?     @db.VarChar(45)
-  breed      String?     @db.VarChar(45)
-  size       String?     @db.VarChar(45)
-  gender     String?     @db.VarChar(45)
-  birthDate  DateTime?   @db.Date
-  arriveDate DateTime?   @db.Date
-  leaveDate  DateTime?   @db.Date
-  vaccine    Vaccine[]
-  adoption   Adoption?
-  delivery   Delivery?
-  treatments Treatment[]
+  id                String      @id @default(uuid())
+  chipNum           String?
+  diskit            String?
+  name              String?     @db.VarChar(45)
+  status            String?     @db.VarChar(45)
+  cabin             String?     @db.VarChar(45)
+  breed             String?     @db.VarChar(45)
+  size              String?     @db.VarChar(45)
+  gender            String?     @db.VarChar(45)
+  birthDate         DateTime?   @db.Date
+  arriveDate        DateTime?   @db.Date
+  leaveDate         DateTime?   @db.Date
+  commentsArrival   String?
+  commentsDeparture String?
+  commentsTreatment String?
+  vaccine           Vaccine[]
+  adoption          Adoption?
+  delivery          Delivery?
+  treatments        Treatment[]
 }
 
 model State {

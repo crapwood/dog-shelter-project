@@ -3,7 +3,7 @@ import prisma from "../../db/db";
 
 export default async function handler(req, res) {
     if (req.method === "POST") {
-        try {
+        // try {
         const {
             name,
             chipNum,
@@ -28,27 +28,133 @@ export default async function handler(req, res) {
             meshushe,
             tolahim,
             id,
-            deliveryId
+            deliveryId,
+            commentsTreatment,
+            commentsDeparture,
+            commentsArrival,
+            treatments,
+            vaccines
         } = req.body;
 
+        console.log(ikur, 'ikur');
 
-        const vaccineKalevetData = kalevet.dateAdministered && await prisma.vaccine.create({
+        let kalevetData;
+        let meshusheData;
+        let vaccinesData = [];
+
+        if (vaccines.length > 0) {
+            vaccines.map(async (v) => {
+                if (v.name == "חיסון כלבת") {
+                    kalevet.dateAdministered && await prisma.vaccine.upsert({
+                        where: {
+                            id: v.id
+                        },
+                        update: {
+                            dateAdministered: kalevet.dateAdministered,
+                            veterenarian: kalevet.veterenarian
+                        },
+                        create: {
+                            name: 'חיסון כלבת', dateAdministered: kalevet.dateAdministered,
+                            veterenarian: kalevet.veterenarian
+                        },
+                    })
+                } else {
+                    meshushe.dateAdministered && await prisma.vaccine.upsert({
+                        where: {
+                            id: v.id
+                        },
+                        update: {
+                            dateAdministered: meshushe.dateAdministered,
+                            veterenarian: meshushe.veterenarian
+                        },
+                        create: {
+                            name: "חיסון משושה",
+                            dateAdministered: meshushe.dateAdministered,
+                            veterenarian: meshushe.veterenarian
+                        },
+                    })
+                }
+            })
+        }
+
+        kalevetData = kalevet.dateAdministered && await prisma.vaccine.create({
             data: {
                 name: 'חיסון כלבת',
-                dateAdministered: kalevet.dateAdministered
+                dateAdministered: kalevet.dateAdministered,
+                veterenarian: kalevet.veterenarian
+
             }
         });
-        const vaccineMeshusheData = meshushe.dateAdministered && await prisma.vaccine.create({
+
+        meshusheData = meshushe.dateAdministered && await prisma.vaccine.create({
             data: {
                 name: 'חיסון משושה',
-                dateAdministered: meshushe.dateAdministered
+                dateAdministered: meshushe.dateAdministered,
+                veterenarian: meshushe.veterenarian
             }
         })
 
-        const vaccinesData = [{
-            id: vaccineKalevetData?.id
+        vaccinesData = [{
+            id: kalevetData?.id
         }, {
-            id: vaccineMeshusheData?.id
+            id: meshusheData?.id
+        }].filter((t) => t.id != undefined) || [];
+
+
+        if (treatments.length > 0) {
+            treatments.map(async (v) => {
+                if (v.name == "עיקור") {
+                    ikur.dateAdministered && await prisma.treatment.upsert({
+                        where: {
+                            id: v.id
+                        },
+                        update: {
+                            datePerformed: ikur.dateAdministered,
+                            veterenarian: ikur.veterenarian
+                        },
+                        create: {
+                            name: 'עיקור', datePerformed: ikur.dateAdministered,
+                            veterenarian: ikur.veterenarian
+                        },
+                    })
+                } else {
+                    tolahim.dateAdministered && await prisma.treatment.upsert({
+                        where: {
+                            id: v.id
+                        },
+                        update: {
+                            datePerformed: tolahim.dateAdministered,
+                            veterenarian: tolahim.veterenarian
+                        },
+                        create: {
+                            name: "תולעים",
+                            datePerformed: tolahim.dateAdministered,
+                            veterenarian: tolahim.veterenarian
+                        },
+                    })
+                }
+            })
+        }
+
+
+        const treatmentsIkurData = ikur.dateAdministered && await prisma.treatment.create({
+            data: {
+                name: 'עיקור',
+                datePerformed: ikur.dateAdministered,
+                veterenarian: ikur.veterenarian
+            }
+        })
+        const treatmentsTolahimData = tolahim.dateAdministered && await prisma.treatment.create({
+            data: {
+                name: 'תולעים',
+                datePerformed: tolahim.dateAdministered,
+                veterenarian: tolahim.veterenarian
+            }
+        })
+        const treatmentsData = [{
+            id: treatmentsIkurData?.id
+        }, {
+            id: treatmentsTolahimData?.id
         }].filter((t) => t.id != undefined) || [];
 
         const adopterData = adopter && await prisma.adopters.create({
@@ -67,23 +173,6 @@ export default async function handler(req, res) {
                 phone: delivererPhone
             }
         })
-        const treatmentsIkurData = ikur.dateAdministered && await prisma.treatment.create({
-            data: {
-                name: 'עיקור',
-                datePerformed: ikur.dateAdministered
-            }
-        })
-        const treatmentsTolahimData = tolahim.dateAdministered && await prisma.treatment.create({
-            data: {
-                name: 'תולעים',
-                datePerformed: tolahim.dateAdministered
-            }
-        })
-        const treatmentsData = [{
-            id: treatmentsIkurData?.id
-        }, {
-            id: treatmentsTolahimData?.id
-        }].filter((t) => t.id != undefined) || [];
 
         const newDogData = await prisma.dogs.update({
             where: {
@@ -99,6 +188,9 @@ export default async function handler(req, res) {
                 cabin,
                 size,
                 arriveDate,
+                commentsArrival,
+                commentsDeparture,
+                commentsTreatment,
                 ...(adopter && {
                     adoption: {
                         create: {
@@ -122,12 +214,18 @@ export default async function handler(req, res) {
                     },
                 },
 
-                ...((tolahim.dateAdministered || ikur.dateAdministered) && {
+                ...((!treatments.length) && {
                     treatments: {
                         connect: treatmentsData
                     }
                 }),
-                ...((kalevet.dateAdministered || meshushe.dateAdministered) && {
+                // ...((kalevet.dateAdministered || meshushe.dateAdministered) && {
+                //     vaccine: {
+                //         connect: vaccinesData
+                //     }
+                // })
+
+                ...((!vaccines.length) && {
                     vaccine: {
                         connect: vaccinesData
                     }
@@ -141,8 +239,8 @@ export default async function handler(req, res) {
             }
         });
         res.status(200).json({ data: newDogData });
-        } catch (err) {
-            res.status(500).send({ error: err });
-        }
+        // } catch (err) {
+        //     res.status(500).send({ error: err });
+        // }
     }
 }
