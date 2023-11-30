@@ -116,8 +116,8 @@ export function Sidepanel({ openSidepanel, setOpenSidepanel, selectedRowData }: 
             },
             body: JSON.stringify(formData),
         });
-        // setOpenSidepanel(false);
-        // router.reload();
+        setOpenSidepanel(false);
+        router.reload();
     };
 
     const handleExpand =
