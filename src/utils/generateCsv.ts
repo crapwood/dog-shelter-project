@@ -18,7 +18,7 @@ const arrayToCsv = (headers, data) => {
 
 // Function to download the generated CSV as a .csv file.
 const download = (data, fileName) => {
-    const blob = new Blob([data], { type: 'text/csv' });
+    const blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
     const url = window.URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.setAttribute('hidden','');
@@ -31,5 +31,7 @@ const download = (data, fileName) => {
 
 export const generateCSV = (header, data, filename) => {
     const csvData = arrayToCsv(header, data);
-    download(csvData, filename);
+    const BOM = "\uFEFF";
+    const csvContent = BOM + csvData;
+    download(csvContent, filename);
 };
